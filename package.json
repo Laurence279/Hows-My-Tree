@@ -7,7 +7,11 @@
   "scripts": {
     "dev": "nodemon app.js",
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "createTable": "node -r dotenv/config db/scripts/createTable.js",
+    "populateTable": "node -r dotenv/config db/scripts/populateTable.js",
+    "selectTable": "node -r dotenv/config db/scripts/selectAllTrees.js",
+    "deleteTable": "node -r dotenv/config db/scripts/deleteAllTrees.js"
   },
   "keywords": [],
   "author": "",

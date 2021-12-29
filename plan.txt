@@ -7,8 +7,8 @@ Set up express routing for a custom tree API ✅
 Part 2:
 Write basic HTML skeleton for each page ✅
 Write form for POST request ✅
-Connect server to database
-Populate database with example data
+Connect server to database ✅
+Populate database with example data ✅
 Setup request handlers to manage Get and Post requests
 Write model functions to handle queries
 Write and conduct tests

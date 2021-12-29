@@ -2,10 +2,10 @@ import pg from "pg";
 import * as config from "../config.js"
 const pool = new pg.Pool({
     port: config.dbPort,
-    host: config.databaseHost,
-    database: config.databaseName,
-    user: config.username,
-    password: config.password
+    host: config.dbHost,
+    database: config.dbName,
+    user: config.dbUser,
+    password: config.dbPass
 })
 
 export function query(text, params) {
