@@ -1,7 +1,7 @@
 //Example document:
 const example = {
-    datePlanted: 2021 / 12 / 24,
-    dateWatered: 2021 / 12 / 24,
+    datePlanted: "2021-12-24",
+    dateWatered: "2021-12-24",
     ownerTitle: "Mr",
     ownerFirstName: "Laur",
     ownerLastName: "Nunn",
@@ -12,8 +12,8 @@ const example = {
 }
 
 const trees = [{
-        datePlanted: new Date(2021, 12, 24),
-        dateWatered: new Date(2021, 12, 24),
+        datePlanted: "2021-12-24",
+        dateWatered: "2021-12-24",
         ownerTitle: "Mr",
         ownerFirstName: "Laur",
         ownerLastName: "Nunn",
@@ -23,8 +23,8 @@ const trees = [{
         password: "test"
     },
     {
-        datePlanted: new Date(2021, 12, 24),
-        dateWatered: new Date(2021, 12, 24),
+        datePlanted: "2021-12-24",
+        dateWatered: "2021-12-24",
         ownerTitle: "Miss",
         ownerFirstName: "Joan",
         ownerLastName: "of Arc",
@@ -34,8 +34,8 @@ const trees = [{
         password: "test"
     },
     {
-        datePlanted: new Date(2021, 12, 24),
-        dateWatered: new Date(2021, 12, 24),
+        datePlanted: "2021-12-24",
+        dateWatered: "2021-12-24",
         ownerTitle: "Mr",
         ownerFirstName: "Beltazor",
         ownerLastName: "Donald",
@@ -45,8 +45,8 @@ const trees = [{
         password: "test"
     },
     {
-        datePlanted: new Date(2021, 12, 24),
-        dateWatered: new Date(2021, 12, 24),
+        datePlanted: "2021-12-24",
+        dateWatered: "2021-12-24",
         ownerTitle: "Dr",
         ownerFirstName: "Sid",
         ownerLastName: "Prune",
@@ -56,8 +56,8 @@ const trees = [{
         password: "test"
     },
     {
-        datePlanted: new Date(2021, 12, 24),
-        dateWatered: new Date(2021, 12, 24),
+        datePlanted: "2021-12-24",
+        dateWatered: "2021-12-24",
         ownerTitle: "Mrs",
         ownerFirstName: "Doris",
         ownerLastName: "Butler",
