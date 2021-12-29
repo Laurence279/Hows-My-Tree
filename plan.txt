@@ -1,0 +1,19 @@
+Part 1:
+Set up express server ✅
+Set up database ✅
+Set up static files in public folder to be served ✅
+Set up express routing for a custom tree API ✅
+
+Part 2:
+Write basic HTML skeleton for each page ✅
+Write form for POST request ✅
+Connect server to database
+Populate database with example data
+Setup request handlers to manage Get and Post requests
+Write model functions to handle queries
+Write and conduct tests
+
+Part 3:
+Add styling to frontend and polish
+Write advance JS to handle website functionality such as tree growth and a server clock.
+Refactor and test..

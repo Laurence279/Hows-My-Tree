@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Plant Your Tree!</title>
+</head>
+
+<body>
+    <h1>Plant a New Tree</h1>
+    <form action="/trees" method="post">
+        <h3>Owner Details</h3>
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname"><br>
+        <h3>Tree Details</h3>
+        <label for="seed">Seed Type:</label><br>
+
+        <select name="seed" id="seed">
+            <option value="oak">Oak</option>
+            <option value="willow">Willow</option>
+            <option value="maple">Maple</option>
+            <option value="elder">Elder</option>
+        </select><br>
+        <label for="colour">Color:</label><br>
+        <input type="color" id="colour" name="colour"><br>
+        <label for="label">Tree Label/Name:</label><br>
+        <input name="label" id="label" cols="30" rows="3"><br>
+        <h3>Password</h3>
+        <label for="password">Password:</label><br>
+        <input name="label" id="label" cols="30" rows="3"><br>
+        <button type="submit">Plant</button>
+    </form>
+    <img src="https://plchldr.co/i/500x500?bg=71BA51" alt="Placeholder">
+    <script src="index.js"></script>
+</body>
+
+</html>
