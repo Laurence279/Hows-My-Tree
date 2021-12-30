@@ -38,7 +38,7 @@ export async function createTree(tree) {
         label,
         password
     } = tree
-    const response = await query("INSERT INTO trees VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9;", [datePlanted, dateWatered, ownerTitle, ownerFirstName, ownerLastName, seed, colour, label, password])
+    const response = await query("INSERT INTO trees (datePlanted, dateWatered, ownerTitle, ownerFirstName, ownerLastName, seed, colour, label, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *;", [datePlanted, dateWatered, ownerTitle, ownerFirstName, ownerLastName, seed, colour, label, password])
     return response.rows;
 }
 
@@ -70,6 +70,6 @@ export async function replaceTreeById(id, tree) {
 // Delete tree by ID.
 
 export async function deleteTreeById(id) {
-    const response = await query("DELETE FROM trees WHERE id = $1", [id])
-    return response;
+    const response = await query("DELETE FROM trees WHERE id = $1 RETURNING *;", [id])
+    return response.rows;
 }

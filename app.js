@@ -21,7 +21,6 @@ import ejs from "ejs"
 
 
 const app = express();
-const PORT = 3000;
 app.use(express.json())
 app.use(express.urlencoded({
     extended: true
@@ -29,11 +28,6 @@ app.use(express.urlencoded({
 app.use(express.static(__dirname + '/public'))
 app.set('view engine', 'ejs');
 app.use("/trees", router);
-
-// set up the server PORT
-app.listen(PORT, function () {
-    console.log(`Server listening on port ${PORT}`)
-})
 
 app.get("/", function (req, res) {
     res.sendFile(__dirname + "/public/index.html")

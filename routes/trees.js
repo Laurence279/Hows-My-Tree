@@ -53,7 +53,7 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
     // Function to create new tree
     const tree = req.body;
-    const payload = createTree(tree);
+    const payload = await createTree(tree);
     res.json({
         success: true,
         message: "Successfully created new tree..",
@@ -63,7 +63,7 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
     // function to replace tree
-    const payload = replaceTreeById(req.params.id)
+    const payload = await replaceTreeById(req.params.id)
     res.json({
         success: true,
         message: `Replaced tree at id ${req.params.id}`,
@@ -74,7 +74,7 @@ router.put("/:id", async (req, res) => {
 router.patch("/:id", async (req, res) => {
     const update = req.body.update;
     const value = req.body.value;
-    const payload = updateTreeById(req.params.id, update, value)
+    const payload = await updateTreeById(req.params.id, update, value)
     // function to update tree
     res.json({
         success: true,
@@ -84,8 +84,9 @@ router.patch("/:id", async (req, res) => {
 })
 
 router.delete("/:id", async (req, res) => {
+
     //function to delete tree by id
-    const payload = deleteTreeById(req.params.id)
+    const payload = await deleteTreeById(req.params.id)
     res.json({
         success: true,
         message: `Deleted tree at id ${req.params.id}`,

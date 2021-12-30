@@ -6,7 +6,7 @@ const example = {
     ownerFirstName: "Laur",
     ownerLastName: "Nunn",
     seed: "Oak",
-    color: "Green",
+    colour: "2e8b57",
     label: "My first tree!",
     password: "test"
 }

@@ -11,7 +11,7 @@ Connect server to database ✅
 Populate database with example data ✅
 Setup request handlers to manage Get and Post requests ✅
 Write model functions to handle queries ✅
-Write and conduct tests
+Write and conduct tests ⏳
 
 Part 3:
 Add styling to frontend and polish
