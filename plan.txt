@@ -9,8 +9,8 @@ Write basic HTML skeleton for each page ✅
 Write form for POST request ✅
 Connect server to database ✅
 Populate database with example data ✅
-Setup request handlers to manage Get and Post requests
-Write model functions to handle queries
+Setup request handlers to manage Get and Post requests ✅
+Write model functions to handle queries ✅
 Write and conduct tests
 
 Part 3:
