@@ -1,6 +1,14 @@
+/* Global */
+
+:root {
+    --main-btn-colour: #77E7FF;
+    --main-background-color: #72AD7f;
+}
+
 * {
     margin: 0;
     padding: 0;
+
 }
 
 body {
@@ -11,6 +19,17 @@ body {
 #wrap {
     margin: 2em;
 }
+
+.main-btn {
+
+    padding: 0.5em 3em;
+    font-size: 1.25rem;
+    background-color: var(--main-btn-colour);
+    margin: 2em auto;
+    display: block;
+}
+
+
 
 /* Font and text displays */
 
@@ -26,6 +45,8 @@ h1 {
 h3 {
     margin: 0.25em 0;
 }
+
+/* Homepage */
 
 /* Main content grid display */
 
@@ -78,10 +99,31 @@ header {
     height: 24px;
 }
 
-#create-btn {
-    padding: 0.5em 3em;
+
+/* Create new Tree */
+
+#create-new-plant-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 4em;
+    gap: 2em;
+}
+
+form {
     font-size: 1.25rem;
-    background-color: #77E7FF;
-    margin: 2em auto;
-    display: block;
+}
+
+form input,
+form select {
+    font-size: 1.25rem;
+    padding: 0.125em 0.25em;
+    width: 300px;
+    margin: 0.25em 0;
+}
+
+#new-tree-display {
+    min-width: 550px;
+    height: 650px;
+    background-color: #fff;
+    border: solid black 2px;
 }
