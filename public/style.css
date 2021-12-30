@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #72AD7F;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#wrap {
+    margin: 2em;
+}
+
+/* Font and text displays */
+
+h1 {
+    font-size: 3rem;
+    display: inline;
+    margin: 1em 0;
+    color: #77E7FF;
+    letter-spacing: 4px;
+
+}
+
+h3 {
+    margin: 0.25em 0;
+}
+
+/* Main content grid display */
+
+.container {
+    display: grid;
+    gap: 4em;
+    grid-template-columns: repeat(auto-fit, 300px);
+    grid-template-rows: repeat(auto-fit, 300px);
+    justify-content: center;
+    margin: 0 2em;
+}
+
+.row {
+    display: flex;
+    gap: 2em;
+    justify-content: space-evenly;
+}
+
+.tree-container {
+    width: 300px;
+    height: 300px;
+    border: solid black 2px;
+    background-color: #fff;
+}
+
+/*Minor elements..*/
+
+header {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 2em;
+}
+
+#search-box {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5em;
+}
+
+#search-box div {
+    display: flex;
+}
+
+#search-input {
+    text-align: center;
+    height: 20px;
+}
+
+#search-btn {
+    height: 24px;
+}
+
+#create-btn {
+    padding: 0.5em 3em;
+    font-size: 1.25rem;
+    background-color: #77E7FF;
+    margin: 2em auto;
+    display: block;
+}
