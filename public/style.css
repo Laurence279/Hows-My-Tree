@@ -2,6 +2,7 @@
 
 :root {
     --main-btn-colour: #77E7FF;
+    --danger-btn-colour: #E24A54;
     --main-background-color: #72AD7f;
 }
 
@@ -16,7 +17,7 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-#wrap {
+.wrap {
     margin: 2em;
 }
 
@@ -27,6 +28,14 @@ body {
     background-color: var(--main-btn-colour);
     margin: 2em auto;
     display: block;
+}
+
+.danger-btn {
+
+    padding: 0.5em 1.5em;
+    font-size: 1.125rem;
+    background-color: var(--danger-btn-colour);
+
 }
 
 
@@ -115,10 +124,16 @@ form {
 
 form input,
 form select {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     padding: 0.125em 0.25em;
     width: 300px;
-    margin: 0.25em 0;
+    margin: 0.375em 0;
+}
+
+form h3 {
+    margin: 0.5em 0;
+    font-size: 1.25em;
+
 }
 
 #new-tree-display {
@@ -126,4 +141,64 @@ form select {
     height: 650px;
     background-color: #fff;
     border: solid black 2px;
+}
+
+/* User tree page */
+
+#user-tree-display-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#user-tree-display {
+    position: relative;
+    width: 600px;
+    height: 550px;
+    background-color: #fff;
+    border: solid black 2px;
+}
+
+#tree-details-container {
+    display: flex;
+    background-color: #80C68F;
+    padding: 2em;
+    border: solid black 2px;
+    border-top: none;
+    justify-content: space-between;
+}
+
+#delete-btn-container {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+#delete-overlay {
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFE8E8;
+    width: 250px;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5em;
+    text-align: center;
+    gap: 0.5em;
+    border: solid black 2px;
+}
+
+#delete-overlay p {
+    font-size: 1.125em;
+}
+
+
+
+#delete-overlay input {
+    font-size: 1em;
+    padding: 0.125em;
 }
