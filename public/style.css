@@ -12,6 +12,16 @@
 
 }
 
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+p {
+    padding: 0.125em;
+    margin: 0 1em;
+}
+
 body {
     background-color: #72AD7F;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -79,6 +89,9 @@ h3 {
     height: 300px;
     border: solid black 2px;
     background-color: #fff;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
 }
 
 /*Minor elements..*/

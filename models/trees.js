@@ -27,9 +27,10 @@ export async function getTreesByName(name) {
 
 // Create tree 
 export async function createTree(tree) {
+    const date = new Date().toDateString();
+    const datePlanted = date;
+    const dateWatered = date;
     const {
-        datePlanted,
-        dateWatered,
         ownerTitle,
         ownerFirstName,
         ownerLastName,
@@ -38,6 +39,7 @@ export async function createTree(tree) {
         label,
         password
     } = tree
+    console.log(tree)
     const response = await query("INSERT INTO trees (datePlanted, dateWatered, ownerTitle, ownerFirstName, ownerLastName, seed, colour, label, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *;", [datePlanted, dateWatered, ownerTitle, ownerFirstName, ownerLastName, seed, colour, label, password])
     return response.rows;
 }
