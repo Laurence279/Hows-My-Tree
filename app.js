@@ -17,9 +17,6 @@ const __dirname = dirname(__filename)
 
 import ejs from "ejs"
 
-
-
-
 const app = express();
 app.use(express.json())
 app.use(express.urlencoded({
@@ -40,5 +37,6 @@ app.get("/plant", function (req, res) {
 app.get("/:id", async (req, res) => {
     res.sendFile(__dirname + "/public/tree.html")
 })
+
 
 export default app;

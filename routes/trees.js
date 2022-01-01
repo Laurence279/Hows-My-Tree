@@ -15,6 +15,9 @@ import {
     deleteTreeById
 } from "../models/trees.js"
 
+function getDate() {
+    return new Date();
+}
 
 
 // GET all trees
@@ -26,7 +29,8 @@ router.get("/", async (req, res) => {
         res.json({
             success: true,
             message: `Retrieved trees with name ${req.query.name}`,
-            payload: payload
+            payload: payload,
+            serverTime: getDate()
         })
         return
     }
@@ -36,7 +40,8 @@ router.get("/", async (req, res) => {
     res.json({
         success: true,
         message: `Retrieved all trees`,
-        payload: payload
+        payload: payload,
+        serverTime: getDate()
     });
 });
 
@@ -46,7 +51,8 @@ router.get("/:id", async (req, res) => {
     res.json({
         success: true,
         message: `Retrieved tree with id ${req.params.id}`,
-        payload: payload
+        payload: payload,
+        serverTime: getDate()
     })
 })
 
@@ -58,7 +64,8 @@ router.post("/", async (req, res) => {
     res.json({
         success: true,
         message: "Successfully created new tree..",
-        payload: payload
+        payload: payload,
+        serverTime: getDate()
     })
 })
 
@@ -68,7 +75,8 @@ router.put("/:id", async (req, res) => {
     res.json({
         success: true,
         message: `Replaced tree at id ${req.params.id}`,
-        payload: payload
+        payload: payload,
+        serverTime: getDate()
     })
 })
 
@@ -80,7 +88,8 @@ router.patch("/:id", async (req, res) => {
     res.json({
         success: true,
         message: `Updated tree at id ${req.params.id}, changed ${update} to ${value}`,
-        payload: payload
+        payload: payload,
+        serverTime: getDate()
     })
 })
 
@@ -91,7 +100,8 @@ router.delete("/:id", async (req, res) => {
     res.json({
         success: true,
         message: `Deleted tree at id ${req.params.id}`,
-        payload: payload
+        payload: payload,
+        serverTime: getDate()
     })
 })
 

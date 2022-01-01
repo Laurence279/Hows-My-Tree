@@ -4,12 +4,13 @@
     --main-btn-colour: #77E7FF;
     --danger-btn-colour: #E24A54;
     --main-background-color: #72AD7f;
+    --secondary-background-color: #a5d8b1;
 }
 
 * {
     margin: 0;
     padding: 0;
-
+    box-sizing: border-box;
 }
 
 a {
@@ -55,7 +56,7 @@ body {
 h1 {
     font-size: 3rem;
     display: inline;
-    margin: 1em 0;
+    margin: 0.5em 0 1em 0;
     color: #77E7FF;
     letter-spacing: 4px;
 
@@ -87,14 +88,33 @@ h3 {
 .tree-container {
     width: 300px;
     height: 300px;
-    border: solid black 2px;
     background-color: #fff;
     justify-content: center;
     display: flex;
     flex-direction: column;
+    box-shadow: 4px 4px #395840;
 }
 
 /*Minor elements..*/
+
+nav {
+    display: flex;
+    align-items: center;
+    padding: 1em;
+    border-bottom: solid black 2px;
+    background-color: var(--secondary-background-color);
+}
+
+
+.nav-link {
+    padding: 0.25em;
+    margin: 0 1em;
+    text-decoration: underline;
+}
+
+.nav-link:hover {
+    color: blue;
+}
 
 header {
     display: flex;
@@ -167,16 +187,22 @@ form h3 {
 }
 
 #user-tree-display {
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 600px;
     height: 550px;
     background-color: #fff;
     border: solid black 2px;
 }
 
+.tree-image {
+    width: 100%;
+}
+
 #tree-details-container {
     display: flex;
-    background-color: #80C68F;
+    background-color: var(--secondary-background-color);
     padding: 2em;
     border: solid black 2px;
     border-top: none;
