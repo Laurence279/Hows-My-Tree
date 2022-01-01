@@ -18,6 +18,26 @@ const deleteOverlay = document.querySelector("#delete-overlay")
 const treeDetailsOwner = document.querySelector("#tree-details-owner")
 const treeDetailsDatePlanted = document.querySelector("#tree-details-date-planted");
 const treeDetailsLabel = document.querySelector("#tree-details-label");
+const waterBtn = document.querySelector("#water-btn")
+
+waterBtn.addEventListener("click", (e) => {
+    makePatchRequest();
+})
+
+async function makePatchRequest() {
+    const id = window.location.href.split("/").pop();
+    const response = await fetch(`/trees/${id}`, {
+        method: `PATCH`,
+        body: JSON.stringify({
+            update: 'datewatered',
+            value: new Date().toDateString()
+        }),
+        headers: {
+            'content-type': 'application/json'
+        }
+    });
+    console.log(await response.json())
+}
 
 function displayTree(object) {
     const tree = document.createElement("img");

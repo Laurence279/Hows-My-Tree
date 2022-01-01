@@ -30,6 +30,7 @@ export async function createTree(tree) {
     const date = new Date().toDateString();
     const datePlanted = date;
     const dateWatered = date;
+    const growthStage = 0;
     const {
         ownerTitle,
         ownerFirstName,
@@ -40,14 +41,21 @@ export async function createTree(tree) {
         password
     } = tree
     console.log(tree)
-    const response = await query("INSERT INTO trees (datePlanted, dateWatered, ownerTitle, ownerFirstName, ownerLastName, seed, colour, label, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *;", [datePlanted, dateWatered, ownerTitle, ownerFirstName, ownerLastName, seed, colour, label, password])
+    const response = await query("INSERT INTO trees (datePlanted, dateWatered, growthStage, ownerTitle, ownerFirstName, ownerLastName, seed, colour, label, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *;", [datePlanted, dateWatered, growthStage, ownerTitle, ownerFirstName, ownerLastName, seed, colour, label, password])
     return response.rows;
 }
 
 // Patch tree by ID.
 
 export async function updateTreeById(id, columnToUpdate, valueToUpdate) {
-    const response = await query("UPDATE trees SET $1 = $2 WHERE id = $3;", [columnToUpdate, valueToUpdate, id])
+
+    if (columnToUpdate == "dateplanted" || columnToUpdate == "datewatered") {
+        const date = new Date(valueToUpdate).toDateString()
+        console.log("Date", date, columnToUpdate, valueToUpdate)
+        const response = await query(`UPDATE trees SET ${columnToUpdate} = $1 WHERE id = $2 RETURNING *;`, [valueToUpdate, id])
+        return response.rows;
+    }
+    const response = await query("UPDATE trees SET $1 = $2 WHERE id = $3 RETURNING *;", [columnToUpdate, valueToUpdate, id])
     return response.rows;
 }
 

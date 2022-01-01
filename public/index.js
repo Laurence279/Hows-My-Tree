@@ -33,6 +33,8 @@ function createNewTree(object) {
     if (daysSincePlanted >= 9) {
         daysSincePlanted = 9
     }
+    const growthStage = object.growthStage;
+    console.log(growthStage)
     img.src = `images/${1+daysSincePlanted}.png`
     img.alt = "tree"
     treeContent.appendChild(img)

@@ -3,7 +3,7 @@ import {
 } from "../db.js"
 import trees from "../../exampleTreeData.js"
 
-const sqlString = "INSERT INTO trees (datePlanted, dateWatered, ownerTitle, ownerFirstName, ownerLastName, seed, colour, label, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *"
+const sqlString = "INSERT INTO trees (datePlanted, dateWatered, growrthState, ownerTitle, ownerFirstName, ownerLastName, seed, colour, label, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *"
 
 async function populateTable() {
     for (let i = 0; i < trees.length; i++) {

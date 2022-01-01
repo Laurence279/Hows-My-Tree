@@ -19,7 +19,6 @@ function getDate() {
     return new Date();
 }
 
-
 // GET all trees
 router.get("/", async (req, res) => {
 
@@ -81,6 +80,7 @@ router.put("/:id", async (req, res) => {
 })
 
 router.patch("/:id", async (req, res) => {
+    console.log(req.body)
     const update = req.body.update;
     const value = req.body.value;
     const payload = await updateTreeById(req.params.id, update, value)

@@ -2,6 +2,7 @@
 const example = {
     datePlanted: "2021-12-24",
     dateWatered: "2021-12-24",
+    growthStage: 0,
     ownerTitle: "Mr",
     ownerFirstName: "Laur",
     ownerLastName: "Nunn",
@@ -14,6 +15,7 @@ const example = {
 const trees = [{
         datePlanted: "2021-12-24",
         dateWatered: "2021-12-24",
+        growthStage: 0,
         ownerTitle: "Mr",
         ownerFirstName: "Laur",
         ownerLastName: "Nunn",
@@ -25,6 +27,7 @@ const trees = [{
     {
         datePlanted: "2021-12-24",
         dateWatered: "2021-12-24",
+        growthStage: 0,
         ownerTitle: "Miss",
         ownerFirstName: "Joan",
         ownerLastName: "of Arc",
@@ -36,6 +39,7 @@ const trees = [{
     {
         datePlanted: "2021-12-24",
         dateWatered: "2021-12-24",
+        growthStage: 0,
         ownerTitle: "Mr",
         ownerFirstName: "Beltazor",
         ownerLastName: "Donald",
@@ -47,6 +51,7 @@ const trees = [{
     {
         datePlanted: "2021-12-24",
         dateWatered: "2021-12-24",
+        growthStage: 0,
         ownerTitle: "Dr",
         ownerFirstName: "Sid",
         ownerLastName: "Prune",
@@ -58,6 +63,7 @@ const trees = [{
     {
         datePlanted: "2021-12-24",
         dateWatered: "2021-12-24",
+        growthStage: 0,
         ownerTitle: "Mrs",
         ownerFirstName: "Doris",
         ownerLastName: "Butler",

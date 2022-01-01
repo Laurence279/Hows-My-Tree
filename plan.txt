@@ -22,7 +22,7 @@ Write advance JS to handle website functionality such as tree growth and a serve
      - Move plant new tree to top of page? ✅
      - Implement search box functionality 
      - Nav bar?? ✅
-     - Add images instead of just data in display boxes
+     - Add images instead of just data in display boxes ✅
      - Make images look different based on seed type and age
      - Encrypt serverside tree data
      - Make things pretty...
