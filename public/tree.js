@@ -4,11 +4,13 @@
     const response = await fetch(`/trees/${id}`);
     const data = await response.json();
     serverTime = data.serverTime;
+    growthStage = data.payload[0].growthstage;
     treeDisplay.appendChild(displayTree(data.payload[0]))
     updateTreeDetails(data.payload[0]);
 })();
 
 var serverTime;
+var growthStage;
 
 
 // Cache
@@ -21,16 +23,17 @@ const treeDetailsLabel = document.querySelector("#tree-details-label");
 const waterBtn = document.querySelector("#water-btn")
 
 waterBtn.addEventListener("click", (e) => {
-    makePatchRequest();
+    makePatchRequest("datewatered", new Date().toDateString());
+    makePatchRequest("growthStage", growthStage += 10)
 })
 
-async function makePatchRequest() {
+async function makePatchRequest(update, value) {
     const id = window.location.href.split("/").pop();
     const response = await fetch(`/trees/${id}`, {
         method: `PATCH`,
         body: JSON.stringify({
-            update: 'datewatered',
-            value: new Date().toDateString()
+            update: `${update}`,
+            value: `${value}`
         }),
         headers: {
             'content-type': 'application/json'
@@ -49,11 +52,13 @@ function displayTree(object) {
     // }
 
     // Get the difference between today and date planted in days
-    let daysSincePlanted = (Math.floor(Math.abs(new Date(serverTime) - new Date(object.dateplanted)) / 86400000))
-    if (daysSincePlanted >= 9) {
-        daysSincePlanted = 9
+    const daysSincePlanted = (Math.floor(Math.abs(new Date(serverTime) - new Date(object.dateplanted)) / 86400000))
+    let totalGrowth = ((daysSincePlanted * 10) + (growthStage)) / 10;
+    if (totalGrowth >= 9) {
+        totalGrowth = 9
     }
-    tree.src = `images/${1+daysSincePlanted}.png`
+
+    tree.src = `images/${1+totalGrowth}.png`
     tree.alt = "tree"
     return tree
 }

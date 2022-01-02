@@ -57,7 +57,6 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
     // Function to create new tree
-
     const tree = req.body;
     const payload = await createTree(tree);
     res.json({

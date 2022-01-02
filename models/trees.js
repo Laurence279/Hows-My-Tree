@@ -3,6 +3,11 @@
 import {
     query
 } from "../db/db.js";
+import bcrypt from "bcrypt"
+const saltRounds = 10;
+
+
+
 
 // Get all trees
 
@@ -27,6 +32,7 @@ export async function getTreesByName(name) {
 
 // Create tree 
 export async function createTree(tree) {
+    const password = bcrypt.hashSync(tree.password, saltRounds);
     const date = new Date().toDateString();
     const datePlanted = date;
     const dateWatered = date;
@@ -38,9 +44,7 @@ export async function createTree(tree) {
         seed,
         colour,
         label,
-        password
     } = tree
-    console.log(tree)
     const response = await query("INSERT INTO trees (datePlanted, dateWatered, growthStage, ownerTitle, ownerFirstName, ownerLastName, seed, colour, label, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *;", [datePlanted, dateWatered, growthStage, ownerTitle, ownerFirstName, ownerLastName, seed, colour, label, password])
     return response.rows;
 }
@@ -55,7 +59,7 @@ export async function updateTreeById(id, columnToUpdate, valueToUpdate) {
         const response = await query(`UPDATE trees SET ${columnToUpdate} = $1 WHERE id = $2 RETURNING *;`, [valueToUpdate, id])
         return response.rows;
     }
-    const response = await query("UPDATE trees SET $1 = $2 WHERE id = $3 RETURNING *;", [columnToUpdate, valueToUpdate, id])
+    const response = await query(`UPDATE trees SET ${columnToUpdate} = $1 WHERE id = $2 RETURNING *;`, [valueToUpdate, id])
     return response.rows;
 }
 
