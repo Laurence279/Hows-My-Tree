@@ -1,12 +1,15 @@
 ;
-(async function getTrees() {
-    const response = await fetch("/trees");
+(async function getTreeById() {
+    const id = window.location.href.split("/").pop();
+    const response = await fetch(`/trees/${id}`);
     const data = await response.json();
-    serverTime = data.serverTime;
-    populateTrees(data.payload)
+    responseData = data;
+    treeData = responseData.payload
+    populateTrees(treeData)
 })();
 
-var serverTime;
+var responseData = {};
+var treeData = {}
 
 // Cache
 
@@ -16,8 +19,6 @@ const displayGrid = document.querySelector("#tree-display-grid")
 
 
 function createNewTree(object) {
-
-
     const tree = document.createElement("a")
     tree.href = `/${object.id}`
     const treeContent = document.createElement("div");
@@ -29,13 +30,12 @@ function createNewTree(object) {
     // }
     const img = document.createElement("img");
     // Get the difference between today and date planted in days
-    let daysSincePlanted = (Math.floor(Math.abs(new Date(serverTime) - new Date(object.dateplanted)) / 86400000))
-    if (daysSincePlanted >= 9) {
-        daysSincePlanted = 9
+    const daysSincePlanted = (Math.floor(Math.abs(new Date(responseData.serverTime) - new Date(object.dateplanted)) / 86400000))
+    let totalGrowth = ((daysSincePlanted * 10) + (object.growthstage)) / 10;
+    if (totalGrowth >= 9) {
+        totalGrowth = 9
     }
-    const growthStage = object.growthStage;
-    console.log(growthStage)
-    img.src = `images/${1+daysSincePlanted}.png`
+    img.src = `images/${1+totalGrowth}.png`
     img.alt = "tree"
     treeContent.appendChild(img)
     tree.appendChild(treeContent)

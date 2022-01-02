@@ -3,14 +3,14 @@
     const id = window.location.href.split("/").pop();
     const response = await fetch(`/trees/${id}`);
     const data = await response.json();
-    serverTime = data.serverTime;
-    growthStage = data.payload[0].growthstage;
-    treeDisplay.appendChild(displayTree(data.payload[0]))
-    updateTreeDetails(data.payload[0]);
+    responseData = data;
+    treeData = responseData.payload[0]
+    treeDisplay.appendChild(displayTree(treeData))
+    updateTreeDetails(treeData);
 })();
 
-var serverTime;
-var growthStage;
+var responseData = {};
+var treeData = {}
 
 
 // Cache
@@ -23,8 +23,12 @@ const treeDetailsLabel = document.querySelector("#tree-details-label");
 const waterBtn = document.querySelector("#water-btn")
 
 waterBtn.addEventListener("click", (e) => {
+    if (new Date(treeData.datewatered).toDateString() == new Date(responseData.serverTime).toDateString()) {
+        console.log("Already watered today!")
+        return
+    }
     makePatchRequest("datewatered", new Date().toDateString());
-    makePatchRequest("growthStage", growthStage += 10)
+    makePatchRequest("growthStage", treeData.growthstage += 10)
 })
 
 async function makePatchRequest(update, value) {
@@ -39,7 +43,7 @@ async function makePatchRequest(update, value) {
             'content-type': 'application/json'
         }
     });
-    console.log(await response.json())
+    console.log(response)
 }
 
 function displayTree(object) {
@@ -52,8 +56,8 @@ function displayTree(object) {
     // }
 
     // Get the difference between today and date planted in days
-    const daysSincePlanted = (Math.floor(Math.abs(new Date(serverTime) - new Date(object.dateplanted)) / 86400000))
-    let totalGrowth = ((daysSincePlanted * 10) + (growthStage)) / 10;
+    const daysSincePlanted = (Math.floor(Math.abs(new Date(responseData.serverTime) - new Date(object.dateplanted)) / 86400000))
+    let totalGrowth = ((daysSincePlanted * 10) + (treeData.growthstage)) / 10;
     if (totalGrowth >= 9) {
         totalGrowth = 9
     }

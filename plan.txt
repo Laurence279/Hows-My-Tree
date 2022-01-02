@@ -17,13 +17,14 @@ Part 3:
 Add styling to frontend and polish ⏳
 Write advance JS to handle website functionality such as tree growth and a server clock. ⏳
      - Display data in correct place on /id page ✅
-     - Add patch request for watering to update time last watered 
+     - Add patch request for watering to update time last watered ✅
      - Add back buttons ✅
      - Move plant new tree to top of page? ✅
      - Implement search box functionality 
      - Nav bar?? ✅
      - Add images instead of just data in display boxes ✅
-     - Make images look different based on seed type and age
-     - Encrypt serverside tree data
+     - Make images look different based on seed type and age ⏳
+     - Encrypt serverside tree data ⏳
+     - Implement delete box
      - Make things pretty...
 Refactor and test..
