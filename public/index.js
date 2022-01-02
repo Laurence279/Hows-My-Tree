@@ -66,14 +66,18 @@ function createNewTree(object) {
     // }
     const img = document.createElement("img");
     // Get the difference between today and date planted in days
-    const daysSincePlanted = (Math.floor(Math.abs(new Date(responseData.serverTime) - new Date(object.dateplanted)) / 86400000))
-    let totalGrowth = ((daysSincePlanted * 10) + (object.growthstage)) / 10;
-    if (totalGrowth >= 9) {
-        totalGrowth = 9
-    }
-    img.src = `images/${1+totalGrowth}.png`
+    let growthImage = object.growthstage / 10
+    img.src = `images/${1+growthImage}.png`
     img.alt = "tree"
+
+    const ownerDetails = document.createElement("h3");
+    ownerDetails.textContent = `${object.ownertitle} ${object.ownerfirstname[0]}. ${object.ownerlastname}`
+    const treeDetails = document.createElement("h4");
+    treeDetails.textContent = `${object.label || "It's a tree!"}`
+    treeContent.appendChild(ownerDetails)
     treeContent.appendChild(img)
+    treeContent.appendChild(treeDetails)
+
     tree.appendChild(treeContent)
     return tree
 }

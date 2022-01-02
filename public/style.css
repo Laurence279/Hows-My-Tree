@@ -1,10 +1,12 @@
 /* Global */
 
 :root {
-    --main-btn-colour: #77E7FF;
+    --primary-color: #1c6819;
+    --main-btn-colour: #78c1ec;
     --danger-btn-colour: #E24A54;
-    --main-background-color: #72AD7f;
-    --secondary-background-color: #a5d8b1;
+    --main-background-color: #cddbc8;
+    --tertiary-color: #72AD7f;
+    --secondary-background-color: #e6d0c3;
 }
 
 * {
@@ -24,7 +26,7 @@ p {
 }
 
 body {
-    background-color: #72AD7F;
+    background-color: var(--main-background-color);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -57,14 +59,16 @@ h1 {
     font-size: 3rem;
     display: inline;
     margin: 0.5em 0 1em 0;
-    color: #77E7FF;
+    color: var(--primary-color);
     letter-spacing: 4px;
 
 }
 
-h3 {
-    margin: 0.25em 0;
-}
+
+
+
+
+
 
 /* Homepage */
 
@@ -72,11 +76,12 @@ h3 {
 
 .container {
     display: grid;
-    gap: 4em;
+    gap: 5em;
     grid-template-columns: repeat(auto-fit, 300px);
-    grid-template-rows: repeat(auto-fit, 300px);
+    grid-template-rows: repeat(auto-fit, auto);
     justify-content: center;
     margin: 0 2em;
+
 }
 
 .row {
@@ -86,13 +91,18 @@ h3 {
 }
 
 .tree-container {
-    width: 300px;
-    height: 300px;
     background-color: #fff;
     justify-content: center;
     display: flex;
     flex-direction: column;
     box-shadow: 4px 4px #395840;
+    text-align: center;
+}
+
+.tree-container h3,
+h4 {
+    background-color: var(--tertiary-color);
+    padding: 0.25em;
 }
 
 /*Minor elements..*/
@@ -113,7 +123,7 @@ nav {
 }
 
 .nav-link:hover {
-    color: blue;
+    color: var(--primary-color);
 }
 
 header {
@@ -125,20 +135,30 @@ header {
 #search-box {
     display: flex;
     flex-direction: column;
-    margin-top: 1.5em;
+
 }
 
 #search-box div {
     display: flex;
 }
 
-#search-input {
+#search-box h3 {
+    margin: 0.25em 0;
+
+}
+
+#search {
+
     text-align: center;
-    height: 20px;
+    padding: 0 1em;
+    font-size: 1rem;
+    margin-right: 0.25em;
 }
 
 #search-btn {
-    height: 24px;
+    font-size: 1rem;
+    padding: 0.25em;
+    background-color: var(--main-btn-colour);
 }
 
 

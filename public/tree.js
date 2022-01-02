@@ -78,6 +78,6 @@ function displayTree(object) {
 
 function updateTreeDetails(data) {
     treeDetailsOwner.textContent = `${data.ownertitle} ${data.ownerfirstname} ${data.ownerlastname}`
-    treeDetailsDatePlanted.textContent = `Date Planted: ${new Date(data.dateplanted.split("T")[0]).toDateString()}`;
+    treeDetailsDatePlanted.textContent = `Planted: ${new Date(data.dateplanted.split("T")[0]).toDateString()}`;
     treeDetailsLabel.textContent = data.label;
 }
