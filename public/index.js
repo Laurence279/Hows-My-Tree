@@ -41,9 +41,18 @@ async function makePatchRequest(id, update, value) {
 // Cache
 
 
-const searchInput = document.querySelector("#search-input")
+const search = document.querySelector("#search")
 const searchBtn = document.querySelector("#search-btn")
 const displayGrid = document.querySelector("#tree-display-grid")
+
+searchBtn.addEventListener("click", async (e) => {
+    displayGrid.innerHTML = ""
+    const response = await fetch(`/trees?search=${search.value}`);
+    const data = await response.json();
+    responseData = data;
+    treeData = data.payload;
+    populateTrees(treeData)
+})
 
 function createNewTree(object) {
     const tree = document.createElement("a")
