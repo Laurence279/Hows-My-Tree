@@ -26,7 +26,9 @@ export async function getTreeById(id) {
 // Get trees by owner name
 
 export async function getTreesByName(name) {
-    const response = await query("SELECT * FROM trees WHERE ownerFirstName = $1 OR ownerLastName = $1;", [name])
+    if (typeof (name) != "string") return
+    var param = name.toLowerCase()
+    const response = await query("SELECT * FROM trees WHERE LOWER(ownerfirstname || ownerlastname) LIKE ('%' || Lower($1) || '%');", [param])
     return response.rows;
 }
 
@@ -35,7 +37,7 @@ export async function createTree(tree) {
     const password = bcrypt.hashSync(tree.password, saltRounds);
     const date = new Date().toDateString();
     const datePlanted = date;
-    const dateWatered = date;
+    const dateWatered = new Date("2000-01-01").toDateString();
     const growthStage = 0;
     const {
         ownerTitle,
@@ -55,7 +57,6 @@ export async function updateTreeById(id, columnToUpdate, valueToUpdate) {
 
     if (columnToUpdate == "dateplanted" || columnToUpdate == "datewatered") {
         const date = new Date(valueToUpdate).toDateString()
-        console.log("Date", date, columnToUpdate, valueToUpdate)
         const response = await query(`UPDATE trees SET ${columnToUpdate} = $1 WHERE id = $2 RETURNING *;`, [valueToUpdate, id])
         return response.rows;
     }

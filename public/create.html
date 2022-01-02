@@ -34,11 +34,11 @@
             <form action="/trees" method="post">
                 <h3>Owner Details</h3>
                 <label for="ownerTitle">Title:</label><br>
-                <input type="text" id="ownerTitle" name="ownerTitle"><br>
+                <input required maxlength="12" type="text" id="ownerTitle" name="ownerTitle"><br>
                 <label for="ownerFirstName">First name:</label><br>
-                <input type="text" id="ownerFirstName" name="ownerFirstName"><br>
+                <input required maxlength="12" type="text" id="ownerFirstName" name="ownerFirstName"><br>
                 <label for="ownerLastName">Last name:</label><br>
-                <input type="text" id="ownerLastName" name="ownerLastName"><br>
+                <input required maxlength="12" type="text" id="ownerLastName" name="ownerLastName"><br>
                 <h3>Tree Details</h3>
                 <label for="seed">Seed Type:</label><br>
 
@@ -49,12 +49,12 @@
                     <option value="elder">Elder</option>
                 </select><br>
                 <label for="colour">Color:</label><br>
-                <input type="color" id="colour" name="colour"><br>
+                <input required maxlength="12" type="color" id="colour" name="colour"><br>
                 <label for="label">Tree Label/Name:</label><br>
-                <input name="label" id="label" cols="30" rows="3"><br>
+                <input required maxlength="20" name="label" id="label" cols="30" rows="3"><br>
                 <h3>Password</h3>
                 <label for="password">Password:</label><br>
-                <input name="password" id="password" cols="30" rows="3"><br>
+                <input required maxlength="20" name="password" id="password" cols="30" rows="3"><br>
                 <button class="main-btn" type="submit">Plant</button>
             </form>
             <div id="new-tree-display">

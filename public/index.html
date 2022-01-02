@@ -20,21 +20,24 @@
 
             <div id="search-box">
                 <h3>Find a tree</h3>
-                <div>
-                    <input id="search-input" type="text" placeholder="Enter Owner/ID">
-                    <button id="search-btn" type="submit">Search</button>
-                </div>
 
+                <form action="/trees">
+                    <label for="search"></label>
+                    <input id="search" name="search" type="text" placeholder="Enter Owner/ID">
+                    <button id="search-btn" type="submit">Search</button>
+                </form>
             </div>
 
-        </header>
+    </div>
 
-        <div id="tree-display-grid" class="container">
+    </header>
+
+    <div id="tree-display-grid" class="container">
 
 
-        </div>
+    </div>
 
-        <a href="/plant"><button class="main-btn">Plant a Tree</button></a>
+    <a href="/plant"><button class="main-btn">Plant a Tree</button></a>
 
 
     </div>

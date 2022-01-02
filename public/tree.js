@@ -1,10 +1,24 @@
-;
+async function updateTreeGrowthStage() {
+    const oldGrowthStage = treeData.growthstage;
+
+    // Get the difference between today and date planted in days
+    const daysSincePlanted = (Math.floor(Math.abs(new Date(responseData.serverTime) - new Date(treeData.dateplanted)) / 86400000))
+    let totalGrowth = oldGrowthStage + (daysSincePlanted * 10);
+    if (totalGrowth >= 90) {
+        totalGrowth = 90
+    }
+    const updatedGrowthStage = totalGrowth
+    await makePatchRequest("growthStage", updatedGrowthStage)
+}
+
+
 (async function getTreeById() {
     const id = window.location.href.split("/").pop();
     const response = await fetch(`/trees/${id}`);
     const data = await response.json();
     responseData = data;
     treeData = responseData.payload[0]
+    await updateTreeGrowthStage();
     treeDisplay.appendChild(displayTree(treeData))
     updateTreeDetails(treeData);
 })();
@@ -22,13 +36,14 @@ const treeDetailsDatePlanted = document.querySelector("#tree-details-date-plante
 const treeDetailsLabel = document.querySelector("#tree-details-label");
 const waterBtn = document.querySelector("#water-btn")
 
-waterBtn.addEventListener("click", (e) => {
+waterBtn.addEventListener("click", async (e) => {
     if (new Date(treeData.datewatered).toDateString() == new Date(responseData.serverTime).toDateString()) {
         console.log("Already watered today!")
         return
     }
-    makePatchRequest("datewatered", new Date().toDateString());
-    makePatchRequest("growthStage", treeData.growthstage += 10)
+    await makePatchRequest("datewatered", new Date().toDateString());
+    await makePatchRequest("growthStage", treeData.growthstage += 10);
+    window.location.reload();
 })
 
 async function makePatchRequest(update, value) {
@@ -54,15 +69,9 @@ function displayTree(object) {
     //     text.textContent = `${[key]}: ${object[key]}`;
     //     tree.appendChild(text)
     // }
+    let growthImage = object.growthstage / 10
 
-    // Get the difference between today and date planted in days
-    const daysSincePlanted = (Math.floor(Math.abs(new Date(responseData.serverTime) - new Date(object.dateplanted)) / 86400000))
-    let totalGrowth = ((daysSincePlanted * 10) + (treeData.growthstage)) / 10;
-    if (totalGrowth >= 9) {
-        totalGrowth = 9
-    }
-
-    tree.src = `images/${1+totalGrowth}.png`
+    tree.src = `images/${1+growthImage}.png`
     tree.alt = "tree"
     return tree
 }

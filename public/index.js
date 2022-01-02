@@ -1,22 +1,49 @@
+async function updateTreeGrowthStage(object) {
+    const oldGrowthStage = object.growthstage;
+
+    // Get the difference between today and date planted in days
+    const daysSincePlanted = (Math.floor(Math.abs(new Date(responseData.serverTime) - new Date(object.dateplanted)) / 86400000))
+    let totalGrowth = oldGrowthStage + (daysSincePlanted * 10);
+    if (totalGrowth >= 90) {
+        totalGrowth = 90
+    }
+    const updatedGrowthStage = totalGrowth
+    await makePatchRequest(object.id, "growthStage", updatedGrowthStage)
+}
+
 ;
-(async function getTreeById() {
-    const id = window.location.href.split("/").pop();
-    const response = await fetch(`/trees/${id}`);
+(async function getTrees() {
+    const response = await fetch("/trees");
     const data = await response.json();
     responseData = data;
-    treeData = responseData.payload
+    treeData = data.payload;
     populateTrees(treeData)
 })();
 
 var responseData = {};
 var treeData = {}
 
+
+async function makePatchRequest(id, update, value) {
+    const response = await fetch(`/trees/${id}`, {
+        method: `PATCH`,
+        body: JSON.stringify({
+            update: `${update}`,
+            value: `${value}`
+        }),
+        headers: {
+            'content-type': 'application/json'
+        }
+    });
+}
+
+
 // Cache
 
 
-
+const searchInput = document.querySelector("#search-input")
+const searchBtn = document.querySelector("#search-btn")
 const displayGrid = document.querySelector("#tree-display-grid")
-
 
 function createNewTree(object) {
     const tree = document.createElement("a")
@@ -42,8 +69,9 @@ function createNewTree(object) {
     return tree
 }
 
-function populateTrees(data) {
+async function populateTrees(data) {
     for (let i = 0; i < data.length; i++) {
+        await updateTreeGrowthStage(data[i])
         const tree = createNewTree(data[i])
         displayGrid.appendChild(tree)
     }
