@@ -73,10 +73,13 @@ function createNewTree(object) {
     img.src = `images/${1+totalGrowth}.png`
     img.alt = "tree"
 
+    const id = document.createElement("h4");
+    id.textContent = `${object.id}`;
     const ownerDetails = document.createElement("h3");
     ownerDetails.textContent = `${object.ownertitle} ${object.ownerfirstname[0]}. ${object.ownerlastname}`
     const treeDetails = document.createElement("h4");
     treeDetails.textContent = `${object.label || "It's a tree!"}`
+    treeContent.appendChild(id)
     treeContent.appendChild(ownerDetails)
     treeContent.appendChild(img)
     treeContent.appendChild(treeDetails)

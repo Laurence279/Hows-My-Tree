@@ -283,12 +283,21 @@ form h3 {
 
 
 #tree-details-container {
+    position: relative;
     display: flex;
     background-color: var(--secondary-background-color);
     padding: 2em;
     border: solid black 2px;
     border-top: none;
     justify-content: space-between;
+}
+
+#tree-id {
+    position: absolute;
+    margin: 0;
+    top: 5px;
+    left: 5px;
+    font-weight: 200;
 }
 
 #delete-btn-container {
@@ -411,6 +420,8 @@ form h3 {
         padding: 1em;
         text-align: center;
     }
+
+
 
     #delete-btn-container {
         position: relative;

@@ -32,6 +32,7 @@ const deleteOverlay = document.querySelector("#delete-overlay")
 const treeDetailsOwner = document.querySelector("#tree-details-owner")
 const treeDetailsDatePlanted = document.querySelector("#tree-details-date-planted");
 const treeDetailsLabel = document.querySelector("#tree-details-label");
+const treeId = document.querySelector("#tree-id")
 const waterBtn = document.querySelector("#water-btn")
 const deleteBtn = document.querySelector("#delete-btn")
 const deleteBtnConfirm = document.querySelector("#delete-btn-confirm")
@@ -119,6 +120,7 @@ function displayTree(object) {
 }
 
 function updateTreeDetails(data) {
+    treeId.textContent = `${data.id}`;
     treeDetailsOwner.textContent = `${data.ownertitle} ${data.ownerfirstname} ${data.ownerlastname}`
     treeDetailsDatePlanted.textContent = `Planted: ${new Date(data.dateplanted.split("T")[0]).toLocaleDateString('en-us',{
         year:"numeric",
