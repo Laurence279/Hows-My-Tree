@@ -51,7 +51,6 @@ router.get("/", async (req, res) => {
 
     //Function to get all trees
     const payload = await getTrees();
-    console.log(payload)
     res.json({
         success: true,
         message: `Retrieved all trees`,

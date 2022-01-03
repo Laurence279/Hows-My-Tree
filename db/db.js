@@ -1,7 +1,7 @@
 import pg from "pg";
 import * as config from "../config.js"
 const pool = new pg.Pool({
-    port: config.dbPort,
+    port: 5432,
     host: config.dbHost,
     database: config.dbName,
     user: config.dbUser,
