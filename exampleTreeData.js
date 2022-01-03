@@ -1,8 +1,7 @@
 //Example document:
 const example = {
-    datePlanted: "2021-12-24",
+    datePlanted: "2021-12-29",
     dateWatered: "2021-12-24",
-    growthStage: 0,
     ownerTitle: "Mr",
     ownerFirstName: "Laur",
     ownerLastName: "Nunn",
@@ -13,9 +12,8 @@ const example = {
 }
 
 const trees = [{
-        datePlanted: "2021-12-24",
-        dateWatered: "2021-12-24",
-        growthStage: 0,
+        datePlanted: "2021-12-29",
+        dateWatered: "2021-12-29",
         ownerTitle: "Mr",
         ownerFirstName: "Laur",
         ownerLastName: "Nunn",
@@ -25,9 +23,8 @@ const trees = [{
         password: "test"
     },
     {
-        datePlanted: "2021-12-24",
+        datePlanted: "2021-12-30",
         dateWatered: "2021-12-24",
-        growthStage: 0,
         ownerTitle: "Miss",
         ownerFirstName: "Joan",
         ownerLastName: "of Arc",
@@ -37,9 +34,8 @@ const trees = [{
         password: "test"
     },
     {
-        datePlanted: "2021-12-24",
+        datePlanted: "2021-12-31",
         dateWatered: "2021-12-24",
-        growthStage: 0,
         ownerTitle: "Mr",
         ownerFirstName: "Beltazor",
         ownerLastName: "Donald",
@@ -49,9 +45,8 @@ const trees = [{
         password: "test"
     },
     {
-        datePlanted: "2021-12-24",
+        datePlanted: "2022-01-01",
         dateWatered: "2021-12-24",
-        growthStage: 0,
         ownerTitle: "Dr",
         ownerFirstName: "Sid",
         ownerLastName: "Prune",
@@ -61,9 +56,8 @@ const trees = [{
         password: "test"
     },
     {
-        datePlanted: "2021-12-24",
+        datePlanted: "2022-01-01",
         dateWatered: "2021-12-24",
-        growthStage: 0,
         ownerTitle: "Mrs",
         ownerFirstName: "Doris",
         ownerLastName: "Butler",
