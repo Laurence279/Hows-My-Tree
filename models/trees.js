@@ -89,10 +89,3 @@ export async function deleteTreeById(id) {
     const response = await query("DELETE FROM trees WHERE id = $1 RETURNING *;", [id])
     return response.rows;
 }
-
-export async function checkPassword(id, password) {
-    const payload = await getTreeById(id)
-    const dbPassword = payload.password
-    const passwordCheck = await bcrypt.compareSync(password, dbPassword);
-    return passwordCheck;
-}

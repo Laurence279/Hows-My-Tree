@@ -5,7 +5,10 @@ const pool = new pg.Pool({
     host: config.dbHost,
     database: config.dbName,
     user: config.dbUser,
-    password: config.dbPass
+    password: config.dbPass,
+    ssl: {
+        rejectUnauthorized: false,
+    }
 })
 
 export function query(text, params) {
