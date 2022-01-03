@@ -25,7 +25,7 @@ function getDate() {
 
 // GET all trees
 router.get("/", async (req, res) => {
-
+    console.log("Hi")
     //Query Handler???
     if (req.query.search) {
         if (req.query.search.match(/^\d+$/)) {
