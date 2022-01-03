@@ -3,6 +3,8 @@
 
 import express from "express";
 const router = express.Router();
+import bcrypt from "bcrypt"
+const saltRounds = 10;
 
 
 import {
@@ -18,6 +20,8 @@ import {
 function getDate() {
     return new Date();
 }
+
+
 
 // GET all trees
 router.get("/", async (req, res) => {
@@ -104,8 +108,19 @@ router.patch("/:id", async (req, res) => {
     })
 })
 
+
+
+
 router.delete("/:id", async (req, res) => {
 
+    const checkPass = await checkPassword(req.params.id, req.body.password)
+    if (!checkPass) {
+        res.json({
+            success: false,
+            message: `Incorrect Password!`
+        })
+        return
+    }
     //function to delete tree by id
     const payload = await deleteTreeById(req.params.id)
     res.json({
@@ -115,6 +130,16 @@ router.delete("/:id", async (req, res) => {
         serverTime: getDate()
     })
 })
+
+async function checkPassword(id, password) {
+
+    const payload = await getTreeById(id)
+    const hash = payload[0].password
+    const passwordCheck = await bcrypt.compareSync(password, hash);
+    return passwordCheck;
+}
+
+
 
 
 

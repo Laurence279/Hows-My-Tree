@@ -1,15 +1,15 @@
-async function updateTreeGrowthStage(object) {
-    const oldGrowthStage = object.growthstage;
+// async function updateTreeGrowthStage(object) {
+//     const oldGrowthStage = object.growthstage;
 
-    // Get the difference between today and date planted in days
-    const daysSincePlanted = (Math.floor(Math.abs(new Date(responseData.serverTime) - new Date(object.dateplanted)) / 86400000))
-    let totalGrowth = oldGrowthStage + (daysSincePlanted * 10);
-    if (totalGrowth >= 90) {
-        totalGrowth = 90
-    }
-    const updatedGrowthStage = totalGrowth
-    await makePatchRequest(object.id, "growthStage", updatedGrowthStage)
-}
+//     // Get the difference between today and date planted in days
+//     const daysSincePlanted = (Math.floor(Math.abs(new Date(responseData.serverTime) - new Date(object.dateplanted)) / 86400000))
+//     let totalGrowth = oldGrowthStage + (daysSincePlanted * 10);
+//     if (totalGrowth >= 90) {
+//         totalGrowth = 90
+//     }
+//     const updatedGrowthStage = totalGrowth
+//     await makePatchRequest(object.id, "growthStage", updatedGrowthStage)
+// }
 
 ;
 (async function getTrees() {
@@ -65,9 +65,12 @@ function createNewTree(object) {
     //     treeContent.appendChild(text)
     // }
     const img = document.createElement("img");
-    // Get the difference between today and date planted in days
-    let growthImage = object.growthstage / 10
-    img.src = `images/${1+growthImage}.png`
+    const daysSincePlanted = (Math.floor(Math.abs(new Date(responseData.serverTime) - new Date(object.dateplanted)) / 86400000))
+    let totalGrowth = object.growthstage + (daysSincePlanted);
+    if (totalGrowth >= 9) {
+        totalGrowth = 9
+    }
+    img.src = `images/${1+totalGrowth}.png`
     img.alt = "tree"
 
     const ownerDetails = document.createElement("h3");
@@ -84,7 +87,6 @@ function createNewTree(object) {
 
 async function populateTrees(data) {
     for (let i = 0; i < data.length; i++) {
-        await updateTreeGrowthStage(data[i])
         const tree = createNewTree(data[i])
         displayGrid.appendChild(tree)
     }

@@ -17,16 +17,17 @@
     </nav>
     <div class="wrap">
         <div id="user-tree-display-content">
-            <h1 id="tree-details-owner">Mr Tree Planter</h1>
+            <h1 id="tree-details-owner"></h1>
             <div id="user-tree-display-container">
                 <div id="user-tree-display">
 
 
 
                     <div id="delete-overlay" style="display:none;">
+                        <button id="delete-close-btn" type="button" class="danger-btn-small">X</button>
                         <p>Enter Password</p>
-                        <input type="text">
-                        <button class="danger-btn">Cut Down</button>
+                        <input id="password-input" type="text">
+                        <button id="delete-btn-confirm" class="danger-btn">Cut Down</button>
                     </div>
                 </div>
                 <div id="tree-details-container">
@@ -39,7 +40,7 @@
 
             <button id="water-btn" class="main-btn" type="button">Water</button>
             <div id="delete-btn-container">
-                <button class="danger-btn" type="button">Cut Down</button>
+                <button id="delete-btn" class="danger-btn" type="button">Cut Down</button>
 
             </div>
         </div>
