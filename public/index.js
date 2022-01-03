@@ -86,8 +86,11 @@ function createNewTree(object) {
 }
 
 async function populateTrees(data) {
-    for (let i = 0; i < data.length; i++) {
-        const tree = createNewTree(data[i])
+    const trees = data.sort(function (a, b) {
+        return a.id - b.id
+    }).reverse()
+    for (let i = 0; i < trees.length; i++) {
+        const tree = createNewTree(trees[i])
         displayGrid.appendChild(tree)
     }
 }
