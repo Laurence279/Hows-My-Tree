@@ -11,6 +11,8 @@ const pool = new pg.Pool({
     }
 })
 
+console.log(config.dbHost)
+
 export function query(text, params) {
 
     //exposing the pool.query method so we can use it elsewhere
