@@ -1,18 +1,25 @@
 /* Global */
 
+@import url('https://fonts.googleapis.com/css2?family=Maitree:wght@200;400;700&family=Patrick+Hand&family=Quicksand:wght@300;500;700&display=swap');
+
 :root {
     --primary-color: #1c6819;
     --main-btn-colour: #78c1ec;
     --danger-btn-colour: #E24A54;
-    --main-background-color: #cddbc8;
+    --main-background-color: #d0d8ce;
     --tertiary-color: #72AD7f;
+    --quad-color: #8ccf99;
     --secondary-background-color: #e6d0c3;
+    --title-font: 'Patrick Hand', cursive;
+    --main-font: 'Quicksand', sans-serif;
+    --secondary-font: 'Maitree', serif;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: var(--main-font);
 }
 
 a {
@@ -27,7 +34,6 @@ p {
 
 body {
     background-color: var(--main-background-color);
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .wrap {
@@ -62,12 +68,12 @@ body {
 /* Font and text displays */
 
 h1 {
-    font-size: 3rem;
+    font-size: 4rem;
+    font-weight: 400;
     display: inline;
     margin: 0.5em 0 1em 0;
     color: var(--primary-color);
-    letter-spacing: 4px;
-
+    font-family: var(--title-font)
 }
 
 
@@ -105,20 +111,37 @@ h1 {
     text-align: center;
 }
 
+.tree-container h3 {
+    font-family: var(--secondary-font);
+    font-weight: 700;
+}
+
 .tree-container h3,
 h4 {
     background-color: var(--tertiary-color);
     padding: 0.25em;
+
+}
+
+a:nth-child(even) h3,
+a:nth-child(even) h4 {
+    background-color: var(--quad-color);
 }
 
 /*Minor elements..*/
 
 nav {
+    position: relative;
     display: flex;
     align-items: center;
     padding: 1em;
+
     border-bottom: solid black 2px;
     background-color: var(--secondary-background-color);
+}
+
+.nav-link:first-of-type {
+    margin-left: 2em;
 }
 
 
@@ -126,10 +149,31 @@ nav {
     padding: 0.25em;
     margin: 0 1em;
     text-decoration: underline;
+
 }
 
 .nav-link:hover {
     color: var(--primary-color);
+}
+
+#nav-logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+    top: 5px;
+    left: 10px;
+    color: var(--primary-color);
+    font-weight: 800;
+    font-family: var(--secondary-font)
+}
+
+#nav-logo p {
+    margin: 0;
 }
 
 header {
@@ -202,6 +246,10 @@ form h3 {
     border: solid black 2px;
 }
 
+.tree-image {
+    width: 100%;
+}
+
 /* User tree page */
 
 #user-tree-display-content {
@@ -212,20 +260,27 @@ form h3 {
     align-items: center;
 }
 
+#user-tree-display-content h1 {
+    text-align: center;
+    font-family: var(--secondary-font)
+}
+
 #user-tree-display {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 600px;
-    height: 550px;
+    max-width: 600px;
+
     background-color: #fff;
     border: solid black 2px;
 }
 
-.tree-image {
+#user-tree-display img {
+
     width: 100%;
 }
+
 
 #tree-details-container {
     display: flex;
@@ -272,4 +327,129 @@ form h3 {
     padding: 0.125em;
     text-align: center;
     margin: 0.25em 0;
+}
+
+#tree-details-owner {
+    margin: 0;
+}
+
+/* Media Queries */
+
+@media (max-width: 1000px) {
+
+
+
+    header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+    }
+
+    h1 {
+        margin: 0.25em 0;
+        text-align: center;
+        font-size: 3.5rem;
+    }
+
+    .container {
+
+        gap: 3em;
+
+
+    }
+
+
+
+    #nav-logo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 0.75rem;
+        margin: 0;
+        padding: 0;
+        top: 5px;
+        left: 10px;
+        color: var(--primary-color);
+        font-weight: 800;
+        font-family: var(--secondary-font)
+    }
+
+    .danger-btn {
+
+        padding: 0.25em 0.5em;
+        font-size: 1rem;
+        background-color: var(--danger-btn-colour);
+
+    }
+
+    #search {
+        padding: 0.25em;
+        margin: 0.25em 0;
+    }
+
+    #search-box div {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2em;
+    }
+
+    #user-tree-display-content h1 {
+        font-family: var(--secondary-font)
+    }
+
+    #user-tree-display-content h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    #tree-details-container {
+        flex-direction: column;
+        padding: 1em;
+        text-align: center;
+    }
+
+    #delete-btn-container {
+        position: relative;
+    }
+
+    /* Create new Tree */
+
+
+    #create-new-plant-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        margin: 0 4em;
+        gap: 2em;
+    }
+
+    form {
+        font-size: 1.25rem;
+    }
+
+    form input,
+    form select {
+        font-size: 1.125rem;
+        padding: 0.125em 0.25em;
+        width: 300px;
+        margin: 0.375em 0;
+    }
+
+    form h3 {
+        margin: 0.5em 0;
+        font-size: 1.25em;
+
+    }
+
+    #new-tree-display {
+        display: none;
+    }
+
+
 }

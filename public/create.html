@@ -12,6 +12,10 @@
 <body>
 
     <nav>
+        <div id="nav-logo">
+            <p>How's My</p>
+            <p>Tree</p>
+        </div>
         <a class="nav-link" href="/">Home</a>
         <a class="nav-link" href="/plant">Plant a Tree!</a>
     </nav>
@@ -25,11 +29,14 @@
             <form action="/trees" method="post">
                 <h3>Owner Details</h3>
                 <label for="ownerTitle">Title:</label><br>
-                <input required maxlength="12" type="text" id="ownerTitle" name="ownerTitle"><br>
+                <input required maxlength="12" type="text" id="ownerTitle" name="ownerTitle"
+                    placeholder="Mr/Mrs/Dr"><br>
                 <label for="ownerFirstName">First name:</label><br>
-                <input required maxlength="12" type="text" id="ownerFirstName" name="ownerFirstName"><br>
+                <input required maxlength="12" type="text" id="ownerFirstName" name="ownerFirstName"
+                    placeholder="First Name"><br>
                 <label for="ownerLastName">Last name:</label><br>
-                <input required maxlength="12" type="text" id="ownerLastName" name="ownerLastName"><br>
+                <input required maxlength="12" type="text" id="ownerLastName" name="ownerLastName"
+                    placeholder="Last Name"><br>
                 <h3>Tree Details</h3>
                 <label for="seed">Seed Type:</label><br>
 
@@ -42,10 +49,12 @@
                 <label for="colour">Color:</label><br>
                 <input required maxlength="12" type="color" id="colour" name="colour"><br>
                 <label for="label">Tree Label/Name:</label><br>
-                <input required maxlength="20" name="label" id="label" cols="30" rows="3"><br>
+                <input required maxlength="20" name="label" id="label" cols="30" rows="3"
+                    placeholder="Tree Description/Label"><br>
                 <h3>Password</h3>
                 <label for="password">Password:</label><br>
-                <input required maxlength="20" name="password" id="password" cols="30" rows="3"><br>
+                <input required maxlength="20" name="password" id="password" cols="30" rows="3"
+                    placeholder="Required for Deletion"><br>
                 <button class="main-btn" type="submit">Plant</button>
             </form>
             <div id="new-tree-display">
