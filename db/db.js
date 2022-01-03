@@ -11,7 +11,7 @@ const pool = new pg.Pool({
     }
 })
 export function query(text, params) {
-
+    console.log("hi")
     //exposing the pool.query method so we can use it elsewhere
     return pool.query(text, params)
     //returns a promise unless we are using a callback (we are not)
