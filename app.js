@@ -41,7 +41,7 @@ app.get("/plant", function (req, res) {
 })
 
 app.get("/:id", async (req, res) => {
-    res.sendFile(__dirname + "/public/tree.html")
+    res.sendFile(__dirname + "/public/canvas.html")
 })
 
 
