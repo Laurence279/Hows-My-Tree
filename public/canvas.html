@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>How's My Tree?</title>
-    <script src="treeGen.js"></script>
+
 </head>
 
 <body>
@@ -20,43 +20,93 @@
         <a class="nav-link" href="/plant">Plant a Tree!</a>
     </nav>
     <div class="wrap">
+        <div id="user-tree-display-content">
+            <h1 id="tree-details-owner"></h1>
+            <div id="user-tree-display-container">
+                <div id="user-tree-display">
+
+                    <canvas></canvas>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+
+
 
 
 
     </div>
-    <!-- 
+
+    </div>
+
     <script type="application/javascript">
+
+
+        /* Fetch data from server here
+                What data do we need?
+                    - The seed used to regenerate the array on the client
+                    - The stage of growth the tree is at (scale)
+                    - Other properties of the tree?
+                        - Branch width
+                        - Colour
+                        - Leaf Type
+
+                e.g tree = {
+                    seed: 100,
+                    scale: 0.7,
+                    maxBranchWith: 5,
+                    colour: "#764f39"
+                    leafType: MEDIUM_LEAVES
+
+                }
+         */
+
         var height = 500;
         var width = 600;
-        var intervalId = 0;
+        let seed = 100;
+        const scale = 0.8;
+        const maxBranchWidth = 0.1;
 
+        const colour = "#764f39";
+
+
+        let index = 0;
+        const nums = Array.from({
+            length: 100000
+        }, () => (simple_random()));
+
+        function simple_random(precision = 10000) {
+            x = Math.sin(seed++) * precision;
+            return x - Math.floor(x);
+        }
+
+        function drawTree() {
+            const leafType = tree.MEDIUM_LEAVES;
+            const treeSpread = 0.7;
+            const drawLeaves = true;
+            const lengthFactor = 200;
+
+            ctx.save();
+            tree.draw(ctx, height, width, treeSpread, drawLeaves, leafType, lengthFactor, maxBranchWidth,
+                colour, scale);
+            ctx.restore();
+        }
 
         function init() {
+
 
             var canvas = document.querySelector("canvas");
 
             if (canvas.getContext("2d")) {
 
-                // document.getElementById("redraw").onclick = function () {
-                //drawTree();
-                // }
-
                 // document.getElementById("saveImage").onclick = function () {
                 //     window.location = canvas.toDataURL("image/png");
-                // }
-
-                // document.getElementById("noLeaves").onclick = function () {
-                //     if (this.checked == false)
-                //         document.getElementById('leaveType').disabled = true;
-                //     else
-                //         document.getElementById('leaveType').disabled = false;
-                // }
-
-                // document.getElementById("auto").onclick = function () {
-                //     if (this.checked == false)
-                //         clearInterval(intervalId);
-                //     else
-                //         intervalId = setInterval("drawTree()", 1000);
                 // }
 
                 canvas.height = height;
@@ -69,47 +119,176 @@
             }
         };
 
-        function drawTree() {
-            // var drawLeaves = document.getElementById('noLeaves').checked;
-            // var treeSpread = document.getElementById('spread').value;
-            // var temp = document.getElementById('leaveType').value;
-            // var leaveType = '';
-
-            // switch (temp) {
-            //     case '1':
-            //         leaveType = tree.SMALL_LEAVES;
-            //         break;
-            //     case '2':
-            //         leaveType = tree.MEDIUM_LEAVES;
-            //         break;
-            //     case '3':
-            //         leaveType = tree.BIG_LEAVES;
-            //         break;
-            //     case '4':
-            //         leaveType = tree.THIN_LEAVES;
-            //         break;
-            //     default:
-            //         leaveType = tree.MEDIUM_LEAVES;
-            // }
+        var tree = {
 
 
-            //     const treeSpread = 0.7;
-            //     const drawLeaves = true;
-            //     const maxDepth = 3;
-            //     const leaveType = 20;
-            //     const lengthFactor = 20;
-            //     const maxBranchWidth = 5;
-            //     const colour = "#008000";
-            //     ctx.save();
-            //     tree.draw(ctx, height, width, treeSpread, drawLeaves, leaveType, maxDepth, lengthFactor, maxBranchWidth,
-            //         colour);
-            //     ctx.restore();
-            // }
+            canvas: '',
+            ctx: '',
+            height: 0,
+            width: 0,
+            drawLeaves: true,
+            leavesColor: '',
+            leafType: this.MEDIUM_LEAVES,
+            lengthFactor: 200,
+            maxBranchWidth: 10,
+            SMALL_LEAVES: 10,
+            MEDIUM_LEAVES: 200,
+            BIG_LEAVES: 500,
+            THIN_LEAVES: 900,
+
+            /**
+             * @member draw
+             * tree.draw() initializes tthe tree structure
+             *
+             * @param {object} ctx      the canvas context
+             * @param {integer} h       height of the canvas
+             * @param {integer} w       width of the canvas
+             * @param {float} spread    how much the tree branches are spread
+             *                          Ranges from 0.3 - 1.
+             * @param {boolean} leaves  draw leaves if set to true    
+             *
+             */
+            draw: function (ctx, h, w, spread, leaves, leafType, lengthFactor, maxBranchWidth, colour,
+                 scale) {
 
 
-            // init();
-            // 
-    </script> -->
+
+
+                this.scale = scale
+
+
+
+
+
+                // Set how much the tree branches are spread
+                if (spread >= 0.3 && spread <= 1) {
+                    this.spread = spread;
+                }
+
+                if (leaves === true || leaves === false) {
+                    this.drawLeaves = leaves;
+                }
+
+                this.leafType = leafType;
+
+
+
+                if (lengthFactor >= 5 && lengthFactor <= 500) {
+                    this.lengthFactor = lengthFactor
+                }
+
+                if (maxBranchWidth >= 0.1 && maxBranchWidth <= 1) {
+                    this.maxBranchWidth = maxBranchWidth
+                }
+
+                this.ctx = ctx;
+                this.height = h;
+                this.width = w;
+                this.ctx.clearRect(0, 0, this.width, this.height);
+                // Center the tree in the window
+                this.ctx.translate(this.width / 2, this.height);
+                // Set the leaves to a random color
+                this.leavesColor = colour;
+                // Set branch thickness
+                this.ctx.lineWidth = 1 + (1 * this.maxBranchWidth); // Was Random number 
+                this.ctx.lineJoin = 'round';
+
+                this.branch(0);
+            },
+
+            /**
+             * @member branch
+             * tree.branch() main tree drawing function
+             *
+             * @param {String} depth the maimum depth the tree can branch,
+             *        Keep this value near 12, larger value take linger to render.
+             *
+             */
+
+
+            branch: function (depth) {
+
+
+                if (depth < 13) {
+
+                    index += 1
+
+
+
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(0, 0);
+                    this.ctx.lineTo(0, -(this.height / 10));
+                    this.ctx.stroke();
+
+                    this.ctx.translate(0, -(this.height) / 10);
+
+
+                    // Random integer from -0.1 to 0.1
+                    var randomN = 0; // SETS THE TREE SWAY
+                    this.ctx.rotate(randomN);
+
+                    if (nums[index] < this.spread) {
+
+                        // If num is less than the spread (0.7 default), then create a branch,
+                        // Increment the depth, and run the branch function again.
+                        // Otherwise, run the function again and check the number without incrementing
+
+                        //So the higher the spread, the more branches will be made because it will check
+                        //More often
+
+
+                        // Draw the left branches
+                        this.ctx.rotate(-0.3);
+                        this.ctx.scale(this.scale, this.scale);
+                        this.ctx.save();
+                        this.branch(depth + 1);
+                        // Draw the right branches
+                        this.ctx.restore();
+                        this.ctx.rotate(0.6);
+                        this.ctx.save();
+                        this.branch(depth + 1);
+                        this.ctx.restore();
+
+                    } else {
+
+                        this.branch(depth);
+                    }
+
+                } else {
+
+                    // Now that we have done drawing branches, draw the leaves
+                    if (this.drawLeaves) {
+                        var lengthFactor = this.lengthFactor;
+
+                        if (this.leafType === this.THIN_LEAVES) {
+                            lengthFactor = 10;
+                        }
+                        this.ctx.fillStyle = this.leavesColor;
+
+                        this.ctx.fillRect(0, 0, this.leafType, lengthFactor);
+                        this.ctx.stroke();
+                    }
+                }
+
+            }
+        };
+
+
+
+        init();
+
+
+        /*
+
+            Algorithmic Tree - 1.0.0
+            drawing trees algorithmically on the HTML5 canvas
+
+            License       : GPL
+            Developer     : Sameer Borate: http://codediesel.com
+            Web Site      : http://codediesel.com
+
+         */
+    </script>
 
 </body>
 
