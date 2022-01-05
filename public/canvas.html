@@ -71,10 +71,11 @@
         var width = 600;
 
         // Store data from database object here
-        let seed = 100;
-        const scale = 0.75; //0.2 - 0.75
-        const maxBranchWidth = 20; //1 - 40
-        const colour = "#764f39";
+        let seed = 100; // Generate this number when creating tree
+        const scale = 0.75; //0.2 - 0.75 - Growth stage - Increases over time.
+        const maxBranchWidth = 20; //1 - 40 - Allow user to choose
+        const colour = "#764f39"; // Allow user to choose
+        const leaves = "big" // Allow user to choose
 
         // Generate the seed's array on client side here:
         let index = 0;
@@ -89,7 +90,17 @@
 
         //Create the tree!
         function drawTree() {
-            const leafType = tree.MEDIUM_LEAVES;
+            switch(leaves) {
+            case 'small': leafType = tree.SMALL_LEAVES;
+                    break;
+            case 'medium': leafType = tree.MEDIUM_LEAVES;
+                    break;
+            case 'big': leafType = tree.BIG_LEAVES;
+                    break;
+            case 'thin': leafType = tree.THIN_LEAVES;
+                    break;
+            default:leafType = tree.MEDIUM_LEAVES;
+        }
             const treeSpread = 0.6;
             const drawLeaves = true;
             const lengthFactor = 200;
