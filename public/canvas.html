@@ -69,13 +69,14 @@
 
         var height = 500;
         var width = 600;
-        let seed = 100;
-        const scale = 0.8;
-        const maxBranchWidth = 0.1;
 
+        // Store data from database object here
+        let seed = 100;
+        const scale = 0.75; //0.2 - 0.75
+        const maxBranchWidth = 20; //1 - 40
         const colour = "#764f39";
 
-
+        // Generate the seed's array on client side here:
         let index = 0;
         const nums = Array.from({
             length: 100000
@@ -86,9 +87,10 @@
             return x - Math.floor(x);
         }
 
+        //Create the tree!
         function drawTree() {
             const leafType = tree.MEDIUM_LEAVES;
-            const treeSpread = 0.7;
+            const treeSpread = 0.6;
             const drawLeaves = true;
             const lengthFactor = 200;
 
@@ -134,7 +136,7 @@
             SMALL_LEAVES: 10,
             MEDIUM_LEAVES: 200,
             BIG_LEAVES: 500,
-            THIN_LEAVES: 900,
+            THIN_LEAVES: 750,
 
             /**
              * @member draw
@@ -177,7 +179,7 @@
                     this.lengthFactor = lengthFactor
                 }
 
-                if (maxBranchWidth >= 0.1 && maxBranchWidth <= 1) {
+                if (maxBranchWidth >= 1 && maxBranchWidth <= 50) {
                     this.maxBranchWidth = maxBranchWidth
                 }
 
@@ -224,7 +226,8 @@
 
 
                     // Random integer from -0.1 to 0.1
-                    var randomN = 0; // SETS THE TREE SWAY
+                    //var randomN = -(Math.random() * 0.2) + 0.1; // SETS THE TREE SWAY
+                    var randomN = 0;
                     this.ctx.rotate(randomN);
 
                     if (nums[index] < this.spread) {
@@ -261,7 +264,7 @@
                         var lengthFactor = this.lengthFactor;
 
                         if (this.leafType === this.THIN_LEAVES) {
-                            lengthFactor = 10;
+                            lengthFactor = 30;
                         }
                         this.ctx.fillStyle = this.leavesColor;
 
