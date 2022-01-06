@@ -10,15 +10,14 @@
 //     await makePatchRequest("growthStage", totalGrowth)
 // }
 
-
+;
 (async function getTreeById() {
     const id = window.location.href.split("/").pop();
     const response = await fetch(`/trees/${id}`);
     const data = await response.json();
     responseData = data;
     treeData = responseData.payload[0]
-    
-    init(treeData)
+    await init(treeData);
     updateTreeDetails(treeData);
 })();
 
@@ -236,13 +235,13 @@ var width = 600;
 // Generate the seed's array on client side here:
 let index = 0;
 
-function generateBranches(seed){
+function generateBranches(seed) {
 
 
     const nums = Array.from({
         length: 100000
     }, () => (simple_random()));
-    
+
     function simple_random(precision = 10000) {
         x = Math.sin(seed++) * precision;
         return x - Math.floor(x);
@@ -255,13 +254,14 @@ let nums;
 
 //Create the tree!
 function drawTree(treeData) {
-console.log(treeData);
+
     // Store data from database object here
 
-nums = generateBranches(treeData.seed)
+    nums = generateBranches(treeData.seed)
 
-    const scale = treeData.scale; //0.2 - 0.75 - Growth stage - Increases over time.
-    const maxBranchWidth = treeData.branchwidth; //1 - 40 - Allow user to choose
+
+    const scale = treeData.scale; //0 - 0.7 - Growth stage - Increases over time.
+    const maxBranchWidth = treeData.branchwidth
     const colour = treeData.colour; // Allow user to choose
     const leaves = treeData.leaves; // Allow user to choose
 
@@ -295,11 +295,11 @@ nums = generateBranches(treeData.seed)
     ctx.restore();
 }
 
-function init(treeData) {
+function init(treeData, canvas) {
 
 
 
-    var canvas = document.querySelector("canvas");
+    var canvas = document.querySelector("canvas")
 
     if (canvas.getContext("2d")) {
 
@@ -386,8 +386,7 @@ var tree = {
         // Center the tree in the window
         this.ctx.translate(this.width / 2, this.height);
         // Set the leaves to a random color
-        console.log(colour)
-        this.leavesColor = `#${colour}`;
+        this.leavesColor = colour;
         // Set branch thickness
         this.ctx.lineWidth = 1 + (1 * this.maxBranchWidth); // Was Random number 
         this.ctx.lineJoin = 'round';

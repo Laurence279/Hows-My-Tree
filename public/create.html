@@ -38,15 +38,24 @@
                 <input required maxlength="12" type="text" id="ownerLastName" name="ownerLastName"
                     placeholder="Last Name"><br>
                 <h3>Tree Details</h3>
-                <label for="seed">Seed Type:</label><br>
+                <label for="thickness">Thickness:</label><br>
 
-                <select name="seed" id="seed">
-                    <option value="oak">Oak</option>
-                    <option value="willow">Willow</option>
-                    <option value="maple">Maple</option>
-                    <option value="elder">Elder</option>
+                <select name="thickness" id="thickness">
+                    <option value="stick">Stick</option>
+                    <option value="thin">Thin</option>
+                    <option value="normal">Normal</option>
+                    <option value="thick">Thick</option>
+                    <option value="chonk">Chonk</option>
                 </select><br>
-                <label for="colour">Color:</label><br>
+                <label for="leaves">Leaf Size:</label><br>
+
+                <select name="leaves" id="leaves">
+                    <option value="thin">Thin</option>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="big">Large</option>
+                </select><br>
+                <label for="colour">Leaf Colour:</label><br>
                 <input required maxlength="12" type="color" id="colour" name="colour"><br>
                 <label for="label">Tree Label/Name:</label><br>
                 <input required maxlength="20" name="label" id="label" cols="30" rows="3"

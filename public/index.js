@@ -17,6 +17,9 @@
     const data = await response.json();
     responseData = data;
     treeData = data.payload;
+    for (let i = 0; i < treeData.length; i ++){
+        await requestTreeUpdate(treeData[i].id)
+    }
     populateTrees(treeData)
 })();
 
@@ -24,13 +27,9 @@ var responseData = {};
 var treeData = {}
 
 
-async function makePatchRequest(id, update, value) {
+async function requestTreeUpdate(id) {
     const response = await fetch(`/trees/${id}`, {
-        method: `PATCH`,
-        body: JSON.stringify({
-            update: `${update}`,
-            value: `${value}`
-        }),
+        method: `GET`,
         headers: {
             'content-type': 'application/json'
         }
@@ -65,7 +64,7 @@ async function createNewTree(object) {
     //     treeContent.appendChild(text)
     // }
     const img = document.createElement("canvas");
-    await init(object, img)
+    init(object, img)
 
     const id = document.createElement("h4");
     id.textContent = `${object.id}`;
@@ -83,6 +82,7 @@ async function createNewTree(object) {
 }
 
 async function populateTrees(data) {
+    displayGrid.innerHTML = ""
     const trees = data.sort(function (a, b) {
         return a.id - b.id
     }).reverse()
@@ -117,6 +117,7 @@ async function populateTrees(data) {
         
         // Generate the seed's array on client side here:
         let index = 0;
+
         
         function generateBranches(seed){
         
@@ -140,7 +141,7 @@ async function populateTrees(data) {
             // Store data from database object here
         
         nums = generateBranches(treeData.seed)
-        
+
             const scale = treeData.scale; //0.2 - 0.75 - Growth stage - Increases over time.
             const maxBranchWidth = treeData.branchwidth; //1 - 40 - Allow user to choose
             const colour = treeData.colour; // Allow user to choose
@@ -167,7 +168,7 @@ async function populateTrees(data) {
             const treeSpread = 0.6;
             const drawLeaves = true;
             const lengthFactor = 200;
-        
+
         
         
             ctx.save();
@@ -179,7 +180,7 @@ async function populateTrees(data) {
         function init(treeData, canvas) {
         
         
-        
+            index = 0;
             var canvas = canvas;
         
             if (canvas.getContext("2d")) {
@@ -187,7 +188,7 @@ async function populateTrees(data) {
                 // document.getElementById("saveImage").onclick = function () {
                 //     window.location = canvas.toDataURL("image/png");
                 // }
-        
+   
                 canvas.height = height;
                 canvas.width = width;
                 ctx = canvas.getContext("2d");
@@ -267,7 +268,7 @@ async function populateTrees(data) {
                 // Center the tree in the window
                 this.ctx.translate(this.width / 2, this.height);
                 // Set the leaves to a random color
-                this.leavesColor = `#${colour}`;
+                this.leavesColor = colour;
                 // Set branch thickness
                 this.ctx.lineWidth = 1 + (1 * this.maxBranchWidth); // Was Random number 
                 this.ctx.lineJoin = 'round';

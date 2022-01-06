@@ -87,6 +87,7 @@ h1 {
 /* Main content grid display */
 
 .container {
+    text-align: center;
     display: grid;
     gap: 5em;
     grid-template-columns: repeat(auto-fit, 300px);

@@ -34,21 +34,51 @@ export async function getTreesByName(name) {
 
 // Create tree 
 export async function createTree(tree) {
+
+    //Generate seed
+    const seed = Math.ceil(Math.random() * 1000000)
+
+        //Generate thickness
+    const thicknessSize = {
+        stick: {
+            min: 1,
+            max: 2
+        },
+        thin: {
+            min: 3,
+            max: 5
+        },
+        normal: {
+            min: 6,
+            max: 15
+        },
+        thick: {
+            min: 16,
+            max: 22
+        },
+        chonk: {
+            min: 23,
+            max: 30
+        }
+    }
+    const branchWidth = Math.floor(Math.random() * (thicknessSize[tree.thickness].max - thicknessSize[tree.thickness].min + 1) + thicknessSize[tree.thickness].min)
+    // Hash password
     const password = bcrypt.hashSync(tree.password, saltRounds);
-    const date = new Date().toDateString();
+    //Create timestamp
+    const date = new Date();
     const datePlanted = date;
-    const dateWatered = new Date("2000-01-01").toDateString();
-    const growthStage = 0;
+    const dateWatered = date;
+    const scale = 0.1;
     const {
         ownerTitle,
         ownerFirstName,
         ownerLastName,
-        seed,
+        leaves,
         colour,
         label,
     } = tree
-    const response = await query("INSERT INTO trees01 (datePlanted, dateWatered, growthStage, ownerTitle, ownerFirstName, ownerLastName, seed, colour, label, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *;", [datePlanted, dateWatered, growthStage, ownerTitle, ownerFirstName, ownerLastName, seed, colour, label, password])
-    return response.rows;
+     const response = await query("INSERT INTO trees01 (datePlanted, dateWatered, ownerTitle, ownerFirstName, ownerLastName, seed, scale, branchwidth, leaves, colour, label, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *;", [datePlanted, dateWatered,ownerTitle, ownerFirstName, ownerLastName, seed, scale, branchWidth, leaves, colour, label, password])
+     return response.rows;
 }
 
 // Patch tree by ID.
