@@ -1,26 +1,36 @@
 //Example document:
 const example = {
-    datePlanted: "2021-12-29",
-    dateWatered: "2021-12-24",
+    datePlanted: "2022-01-01",
+    dateWatered: "2022-01-01",
     ownerTitle: "Mr",
     ownerFirstName: "Laur",
     ownerLastName: "Nunn",
-    seed: "Oak",
+
+    seed: 100,
+    scale: 0.75,
+    branchWidth: 20,
+    leaves: "big",
     colour: "2e8b57",
     label: "My first tree!",
+    
     password: "test"
 }
 
 const trees = [{
-        datePlanted: "2021-12-29",
-        dateWatered: "2021-12-29",
-        ownerTitle: "Mr",
-        ownerFirstName: "Laur",
-        ownerLastName: "Nunn",
-        seed: "Oak",
-        colour: "2e8b57",
-        label: "My first tree!",
-        password: "test"
+    datePlanted: "2022-01-01",
+    dateWatered: "2022-01-01",
+    ownerTitle: "Mr",
+    ownerFirstName: "Laur",
+    ownerLastName: "Nunn",
+
+    seed: 1312,
+    scale: 0.37,
+    branchWidth: 10,
+    leaves: "big",
+    colour: "2e8b57",
+    label: "My first tree!",
+    
+    password: "test"
     },
     {
         datePlanted: "2021-12-30",
@@ -28,9 +38,13 @@ const trees = [{
         ownerTitle: "Miss",
         ownerFirstName: "Joan",
         ownerLastName: "of Arc",
-        seed: "Willow",
-        colour: "2e3f8b",
+        seed: 43141,
+        scale: 0.5,
+        branchWidth: 20,
+        leaves: "big",
+        colour: "2e8b57",
         label: "For France!",
+        
         password: "test"
     },
     {
@@ -39,9 +53,13 @@ const trees = [{
         ownerTitle: "Mr",
         ownerFirstName: "Beltazor",
         ownerLastName: "Donald",
-        seed: "Elder",
-        colour: "000000",
-        label: "Yay! Tree!",
+        seed: 3213,
+        scale: 0.70,
+        branchWidth: 20,
+        leaves: "big",
+        colour: "2e8b57",
+        label: "I made a tree.",
+        
         password: "test"
     },
     {
@@ -50,9 +68,13 @@ const trees = [{
         ownerTitle: "Dr",
         ownerFirstName: "Sid",
         ownerLastName: "Prune",
-        seed: "Oak",
-        colour: "521f16",
-        label: "I made a tree!",
+        seed: 8365,
+        scale: 0.68,
+        branchWidth: 30,
+        leaves: "big",
+        colour: "2e8b57",
+        label: "Yay! Tree!",
+        
         password: "test"
     },
     {
@@ -61,9 +83,13 @@ const trees = [{
         ownerTitle: "Mrs",
         ownerFirstName: "Doris",
         ownerLastName: "Butler",
-        seed: "Maple",
+        seed: 542654,
+        scale: 0.70,
+        branchWidth: 25,
+        leaves: "medium",
         colour: "2e8b57",
-        label: "I made it for my grandchildren.",
+        label: "I made it for my Grandchildren.",
+        
         password: "test"
     }
 ]
