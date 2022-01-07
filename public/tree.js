@@ -18,6 +18,10 @@
     responseData = data;
     treeData = responseData.payload[0]
     await init(treeData);
+    if (new Date(treeData.datewatered).toDateString() == new Date(responseData.serverTime).toDateString()) {
+        waterBtn.textContent= ("Already watered today!")
+        waterBtn.disabled = true;
+    }
     updateTreeDetails(treeData);
 })();
 
@@ -78,7 +82,8 @@ deleteBtnConfirm.addEventListener("click", async (e) => {
 
 waterBtn.addEventListener("click", async (e) => {
     if (new Date(treeData.datewatered).toDateString() == new Date(responseData.serverTime).toDateString()) {
-        console.log("Already watered today!")
+        waterBtn.textContent= ("Already watered today!")
+        waterBtn.disabled = true;
         return
     }
     await makePatchRequest("datewatered", "GET_DATE");
