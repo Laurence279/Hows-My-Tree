@@ -271,14 +271,12 @@ form h3 {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 600px;
 
     background-color: #fff;
     border: solid black 2px;
 }
 
-#user-tree-display img {
-
+canvas{
     width: 100%;
 }
 
