@@ -81,8 +81,8 @@ waterBtn.addEventListener("click", async (e) => {
         console.log("Already watered today!")
         return
     }
-    await makePatchRequest("datewatered", new Date().toDateString());
-    await makePatchRequest("growthStage", treeData.growthstage += 1);
+    await makePatchRequest("datewatered", "GET_DATE");
+    await makePatchRequest("timeswatered", treeData.timeswatered += 1);
     window.location.reload();
 })
 

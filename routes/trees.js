@@ -19,11 +19,13 @@ import {
     getTreesByName
 } from "../models/trees.js"
 import app from "../app.js";
+
 function getDate() {
     return DateTime.now();
 }
 
-function calculateGrowth(dateCreated, currentTime) {
+function calculateGrowth(dateCreated, timesWatered, currentTime) {
+
 
     const ageInMins = Math.floor(Interval.fromDateTimes(dateCreated, currentTime).length('minutes'))
     let growth;
@@ -32,12 +34,15 @@ function calculateGrowth(dateCreated, currentTime) {
         //Tree is < 4 days old.
         //Increment faster per min. (+0.1 per day)
         //After 4 days it will reach 0.3
-        growth = ageInMins * 0.00006        
+        growth = (ageInMins * 0.00006);
+
+    
     } else if (ageInMins < 15000) {
         //Tree is between 4 - 10 days old.
         //Increment slower per min. (+0.05 per day)
         //After 6 days it will reach 0.6
         growth = (ageInMins - 6000) * 0.00003 + 0.36;
+
         // Growth is now calculated from the total summed growth so far (0.36)
         // Minus the 6000 because these minutes have already been calculated
 
@@ -45,11 +50,15 @@ function calculateGrowth(dateCreated, currentTime) {
         //Tree is > 10 days old.
         //Increment even slower per min. (+0.01 per day)
         //After approx. 10 days it will reach 0.7
-        growth = (ageInMins - 15000) * 0.000006 + 0.63
-        // Growth is now calculated from the total summed growth so far (0.36)
-        // Minus the 6000 because these minutes have already been calculated
+        growth = (ageInMins - 15000) * 0.000006 + 0.63;
+
+        // Growth is now calculated from the total summed growth so far (0.63)
+        // Minus the 15000 because these minutes have already been calculated
 
     }
+
+    const waterBoost = (growth / 100) * 1 * timesWatered; // +1% per day of watering
+    growth += waterBoost; //Total growth as scale
     if(growth >= 0.7) growth = 0.7
     return Number(growth.toFixed(4))
 
@@ -57,7 +66,7 @@ function calculateGrowth(dateCreated, currentTime) {
 
 async function updateTreeAge(tree){
     const update = "scale";
-    const value = calculateGrowth(tree.dateplanted, getDate());
+    const value = calculateGrowth(tree.dateplanted, tree.timeswatered, getDate());
     await updateTreeById(tree.id, update, value)
 }
 
@@ -143,6 +152,7 @@ router.put("/:id", async (req, res) => {
 router.patch("/:id", async (req, res) => {
   
     const update = req.body.update;
+
     let value = req.body.value;
     const payload = await updateTreeById(req.params.id, update, value)
     // function to update tree

@@ -12,7 +12,7 @@
 // }
 
 ;
-(async function getTrees() {
+(async function getAndUpdateTrees() {
     const response = await fetch("/trees");
     const data = await response.json();
     responseData = data;
@@ -20,8 +20,16 @@
     for (let i = 0; i < treeData.length; i ++){
         await requestTreeUpdate(treeData[i].id)
     }
-    populateTrees(treeData)
+    const updatedResponse = await getTrees();
+    const updatedData = await updatedResponse.json();
+    populateTrees(updatedData.payload)
+    
 })();
+
+async function getTrees() {
+    const response = await fetch("/trees");
+    return response;
+};
 
 var responseData = {};
 var treeData = {}

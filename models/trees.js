@@ -68,6 +68,7 @@ export async function createTree(tree) {
     const date = new Date();
     const datePlanted = date;
     const dateWatered = date;
+    const timesWatered = 0;
     const scale = 0.1;
     const {
         ownerTitle,
@@ -77,7 +78,7 @@ export async function createTree(tree) {
         colour,
         label,
     } = tree
-     const response = await query("INSERT INTO trees01 (datePlanted, dateWatered, ownerTitle, ownerFirstName, ownerLastName, seed, scale, branchwidth, leaves, colour, label, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *;", [datePlanted, dateWatered,ownerTitle, ownerFirstName, ownerLastName, seed, scale, branchWidth, leaves, colour, label, password])
+     const response = await query("INSERT INTO trees01 (datePlanted, dateWatered,   timesWatered, ownerTitle, ownerFirstName, ownerLastName, seed, scale, branchwidth, leaves, colour, label, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *;", [datePlanted, dateWatered, timesWatered, ownerTitle, ownerFirstName, ownerLastName, seed, scale, branchWidth, leaves, colour, label, password])
      return response.rows;
 }
 
@@ -85,8 +86,8 @@ export async function createTree(tree) {
 
 export async function updateTreeById(id, columnToUpdate, valueToUpdate) {
 
-    if (columnToUpdate == "dateplanted" || columnToUpdate == "datewatered") {
-        // const date = new Date(valueToUpdate).toDateString()
+    if (columnToUpdate == "datewatered") {
+        valueToUpdate = new Date();
         const response = await query(`UPDATE trees01 SET ${columnToUpdate} = $1 WHERE id = $2 RETURNING *;`, [valueToUpdate, id])
         return response.rows;
     }
