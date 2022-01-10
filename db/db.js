@@ -15,3 +15,7 @@ export function query(text, params) {
     return pool.query(text, params)
     //returns a promise unless we are using a callback (we are not)
 }
+
+export async function close(){
+    return await pool.end();
+}

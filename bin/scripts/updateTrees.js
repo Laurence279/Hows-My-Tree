@@ -1,5 +1,5 @@
 import {
-    query
+    query, close
 } from "../../db/db.js"
 import { DateTime, Interval } from "luxon";
 
@@ -73,6 +73,8 @@ async function init(){
 
     }
     console.log("Updated Trees!")
+    await close();
+    console.log("Pool closed.")
 }
 
 init();
