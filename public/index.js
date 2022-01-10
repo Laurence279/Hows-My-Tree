@@ -1,15 +1,3 @@
-// async function updateTreeGrowthStage(object) {
-//     const oldGrowthStage = object.growthstage;
-
-//     // Get the difference between today and date planted in days
-//     const daysSincePlanted = (Math.floor(Math.abs(new Date(responseData.serverTime) - new Date(object.dateplanted)) / 86400000))
-//     let totalGrowth = oldGrowthStage + (daysSincePlanted * 10);
-//     if (totalGrowth >= 90) {
-//         totalGrowth = 90
-//     }
-//     const updatedGrowthStage = totalGrowth
-//     await makePatchRequest(object.id, "growthStage", updatedGrowthStage)
-// }
 
 ;
 (async function getAndUpdateTrees() {
@@ -17,12 +5,7 @@
     const data = await response.json();
     responseData = data;
     treeData = data.payload;
-    for (let i = 0; i < treeData.length; i ++){
-        await requestTreeUpdate(treeData[i].id)
-    }
-    const updatedResponse = await getTrees();
-    const updatedData = await updatedResponse.json();
-    populateTrees(updatedData.payload)
+    populateTrees(treeData)
     
 })();
 
@@ -35,14 +18,14 @@ var responseData = {};
 var treeData = {}
 
 
-async function requestTreeUpdate(id) {
-    const response = await fetch(`/trees/${id}`, {
-        method: `GET`,
-        headers: {
-            'content-type': 'application/json'
-        }
-    });
-}
+// async function requestTreeUpdate(id) {
+//     const response = await fetch(`/trees/${id}`, {
+//         method: `GET`,
+//         headers: {
+//             'content-type': 'application/json'
+//         }
+//     });
+// }
 
 
 // Cache
@@ -66,11 +49,6 @@ async function createNewTree(object) {
     tree.href = `/${object.id}`
     const treeContent = document.createElement("div");
     treeContent.classList.add("tree-container")
-    // for (let key in object) {
-    //     const text = document.createElement("p")
-    //     text.textContent = `${[key]}: ${object[key]}`;
-    //     treeContent.appendChild(text)
-    // }
     const img = document.createElement("canvas");
     init(object, img)
 

@@ -1,14 +1,3 @@
-// async function updateTreeGrowthStage() {
-//     const oldGrowthStage = treeData.growthstage;
-
-//     // Get the difference between today and date planted in days
-//     const daysSincePlanted = (Math.floor(Math.abs(new Date(responseData.serverTime) - new Date(treeData.dateplanted)) / 86400000))
-//     let totalGrowth = oldGrowthStage + (daysSincePlanted * 10);
-//     if (totalGrowth >= 90) {
-//         totalGrowth = 90
-//     }
-//     await makePatchRequest("growthStage", totalGrowth)
-// }
 
 ;
 (async function getTreeById() {
@@ -106,23 +95,6 @@ async function makePatchRequest(update, value) {
     console.log(response)
 }
 
-function displayTree(object) {
-    const tree = document.createElement("img");
-
-    // for (let key in object) {
-    //     const text = document.createElement("p")
-    //     text.textContent = `${[key]}: ${object[key]}`;
-    //     tree.appendChild(text)
-    // }
-    const daysSincePlanted = (Math.floor(Math.abs(new Date(responseData.serverTime) - new Date(object.dateplanted)) / 86400000))
-    let totalGrowth = object.growthstage + (daysSincePlanted);
-    if (totalGrowth >= 9) {
-        totalGrowth = 9
-    }
-    tree.src = `images/${1+totalGrowth}.png`
-    tree.alt = "tree"
-    return tree
-}
 
 function updateTreeDetails(data) {
     treeId.textContent = `${data.id}`;
