@@ -1,7 +1,7 @@
 // API query functions..
 
 import {
-    query, close
+    query
 } from "../db/db.js";
 import bcrypt from "bcrypt"
 const saltRounds = 10;
@@ -13,7 +13,6 @@ const saltRounds = 10;
 
 export async function getTrees() {
     const response = await query("SELECT * FROM trees01;")
-    await close();
     return response.rows
 }
 
@@ -21,7 +20,6 @@ export async function getTrees() {
 
 export async function getTreeById(id) {
     const response = await query("SELECT * FROM trees01 WHERE id = $1;", [id])
-    await close();
     return response.rows;
 }
 
@@ -31,7 +29,6 @@ export async function getTreesByName(name) {
     if (typeof (name) != "string") return
     var param = name.toLowerCase()
     const response = await query("SELECT * FROM trees01 WHERE LOWER(ownerfirstname || ownerlastname) LIKE ('%' || Lower($1) || '%');", [param])
-    await close();
     return response.rows;
 }
 
@@ -82,7 +79,6 @@ export async function createTree(tree) {
         label,
     } = tree
      const response = await query("INSERT INTO trees01 (datePlanted, dateWatered,   timesWatered, ownerTitle, ownerFirstName, ownerLastName, seed, scale, branchwidth, leaves, colour, label, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *;", [datePlanted, dateWatered, timesWatered, ownerTitle, ownerFirstName, ownerLastName, seed, scale, branchWidth, leaves, colour, label, password])
-     await close();
      return response.rows;
 }
 
@@ -96,7 +92,6 @@ export async function updateTreeById(id, columnToUpdate, valueToUpdate) {
         return response.rows;
     }
     const response = await query(`UPDATE trees01 SET ${columnToUpdate} = $1 WHERE id = $2 RETURNING *;`, [valueToUpdate, id])
-    await close();
     return response.rows;
 }
 
@@ -115,7 +110,6 @@ export async function replaceTreeById(id, tree) {
         password
     } = tree
     const response = await query("UPDATE trees01 SET datePlanted = $1, dateWatered = $2, ownerTitle = $3, ownerFirstName = $4, ownerLastName = $5, seed = $6, colour = $7, label = $8, password = $9 WHERE id = $10;", [datePlanted, dateWatered, ownerTitle, ownerFirstName, ownerLastName, seed, colour, label, password, id])
-    await close();
     return response.rows;
 }
 
@@ -124,6 +118,5 @@ export async function replaceTreeById(id, tree) {
 export async function deleteTreeById(id) {
 
     const response = await query("DELETE FROM trees01 WHERE id = $1 RETURNING *;", [id])
-    await close();
     return response.rows;
 }
