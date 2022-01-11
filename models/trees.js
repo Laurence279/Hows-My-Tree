@@ -67,7 +67,7 @@ export async function createTree(tree) {
     //Create timestamp
     const date = new Date();
     const datePlanted = date;
-    const dateWatered = date;
+    const dateWatered = new Date("2000");
     const timesWatered = 0;
     const scale = 0.1;
     const {

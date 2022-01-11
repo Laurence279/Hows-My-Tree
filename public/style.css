@@ -277,8 +277,38 @@ form h3 {
 }
 
 canvas{
+    position: relative;
     width: 100%;
 }
+
+#canvas-container{
+    line-height: 0px;
+}
+
+#user-tree-display-container{
+ overflow:hidden;
+}
+
+.rain-drop{
+    position: absolute;
+    width: 1px;
+    height:20px;
+    transform: rotate(-45deg);
+    background-color: royalblue;
+    animation: mymove 2s linear 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes mymove {
+    0% {
+
+    }
+    100% {
+        margin-top: 1000px;
+        margin-left: 1000px;
+    }
+  }
+
 
 
 #tree-details-container {

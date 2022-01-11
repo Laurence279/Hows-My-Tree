@@ -75,9 +75,13 @@ waterBtn.addEventListener("click", async (e) => {
         waterBtn.disabled = true;
         return
     }
+    e.preventDefault();
+    console.log("Watering tree")
     await makePatchRequest("datewatered", "GET_DATE");
     await makePatchRequest("timeswatered", treeData.timeswatered += 1);
-    window.location.reload();
+    waterBtn.textContent= ("Already watered today!")
+    waterBtn.disabled = true;
+    createRain();
 })
 
 async function makePatchRequest(update, value) {
@@ -108,102 +112,50 @@ function updateTreeDetails(data) {
 }
 
 
-//#region Tree Stage Planning
+//Watering Tree.
 
-/*
+//Number of raindrops to instantiate
+const numRaindrops = 200;
 
-Seed Types:
+const rainContainer = document.querySelector("#rain-container");
 
-Fir:
-Acacia:
-Maple:
-Redwood:
-Elder:
-Oak:
-Birch:
-Willow:
+//Generate random number for spawn position
+function randRange( minNum, maxNum) {
+    return (Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum);
+  }
 
-Fir:
-Stage 1:
-
-Single, small branch. No leaves
-
-            const treeSpread = 1;
-            const drawLeaves = false;
-            const maxDepth = 1;
-            const leaveType = tree.SMALL_LEAVES;
-            const lengthFactor = 10;
-            const maxBranchWidth = 5;
-            const colour = "#008000";
-
-Stage 2:
-
-Trunk with 2 branching paths. No Leaves
-
-            const treeSpread = 0.9;
-            const drawLeaves = false;
-            const maxDepth = 2;
-            const leaveType = tree.SMALL_LEAVES;
-            const lengthFactor = 10;
-            const maxBranchWidth = 5;
-            const colour = "#008000";
-
-
-Stage 3:
-
-Branching paths are longer and also have branches. No leaves
-
-            const treeSpread = 0.8;
-            const drawLeaves = false;
-            const maxDepth = 3;
-            const leaveType = tree.SMALL_LEAVES;
-            const lengthFactor = 10;
-            const maxBranchWidth = 5;
-            const colour = "#008000";
-
-Stage 4:
-
-
-
-Stage 5:
-
-Stage 6:
-
-Stage 7:
-
-Stage 8:
-
-Stage 9:
-
-Stage 10:
-
-
-*/
-
-//#endregion
-
-
-//#region Tree Generator Code
-
-
-/* Fetch data from server here
-        What data do we need?
-            - The seed used to regenerate the array on the client
-            - The stage of growth the tree is at (scale)
-            - Other properties of the tree?
-                - Branch width
-                - Colour
-                - Leaf Type
-
-        e.g tree = {
-            seed: 100,
-            scale: 0.7,
-            maxBranchWith: 5,
-            colour: "#764f39"
-            leafType: MEDIUM_LEAVES
-
+//Function to loop through and create drops
+let i = 0;
+function createRain(){
+        const rainDropPosX = randRange(-500,-10);
+        const rainDropPosY = randRange(-500,-10);
+        rainContainer.append(createRainDrop(rainDropPosX, rainDropPosY));
+        i++;
+        if(i <= numRaindrops){
+            setTimeout(createRain, 5)
         }
- */
+    }
+    
+
+
+
+//Initialise rain
+
+
+function createRainDrop(posX, posY){
+    const rainDrop = document.createElement("div");
+    rainDrop.classList.add("rain-drop");
+    rainDrop.style.left = `${posX}px`;
+    rainDrop.style.top = `${posY}px`;
+    return rainDrop;
+}
+
+
+
+
+
+//Canvas
+
 
 var height = 500;
 var width = 600;
@@ -272,6 +224,8 @@ function drawTree(treeData) {
     ctx.restore();
 }
 
+
+
 function initialiseTreeCanvas(treeData, canvas) {
 
 
@@ -290,7 +244,7 @@ function initialiseTreeCanvas(treeData, canvas) {
         drawTree(treeData);
 
     } else {
-        document.getElementById('form_container').innerHTML = "Your browser doen't support Canvas!";
+        canvas.innerHTML = "Your browser doen't support Canvas!";
     }
 };
 
