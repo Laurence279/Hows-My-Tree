@@ -50,7 +50,7 @@ async function createNewTree(object) {
     const treeContent = document.createElement("div");
     treeContent.classList.add("tree-container")
     const img = document.createElement("canvas");
-    init(object, img)
+    initialiseTreeCanvas(object, img)
 
     const id = document.createElement("h4");
     id.textContent = `${object.id}`;
@@ -163,7 +163,7 @@ async function populateTrees(data) {
             ctx.restore();
         }
         
-        function init(treeData, canvas) {
+        function initialiseTreeCanvas(treeData, canvas) {
         
         
             index = 0;
@@ -290,8 +290,8 @@ async function populateTrees(data) {
         
         
                     // Random integer from -0.1 to 0.1
-                    //var randomN = -(Math.random() * 0.2) + 0.1; // SETS THE TREE SWAY
-                    var randomN = 0;
+                    var randomN = -(nums[index] * 0.2) + 0.1; // SETS THE TREE SWAY
+                    //var randomN = 0;
                     this.ctx.rotate(randomN);
         
                     if (nums[index] < this.spread) {

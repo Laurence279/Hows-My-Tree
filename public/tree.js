@@ -6,7 +6,7 @@
     const data = await response.json();
     responseData = data;
     treeData = responseData.payload[0]
-    await init(treeData);
+    await initialiseTreeCanvas(treeData);
     if (new Date(treeData.datewatered).toDateString() == new Date(responseData.serverTime).toDateString()) {
         waterBtn.textContent= ("Already watered today!")
         waterBtn.disabled = true;
@@ -272,7 +272,7 @@ function drawTree(treeData) {
     ctx.restore();
 }
 
-function init(treeData, canvas) {
+function initialiseTreeCanvas(treeData, canvas) {
 
 
 
@@ -399,8 +399,8 @@ var tree = {
 
 
             // Random integer from -0.1 to 0.1
-            //var randomN = -(Math.random() * 0.2) + 0.1; // SETS THE TREE SWAY
-            var randomN = 0;
+            var randomN = -(nums[index] * 0.2) + 0.1; // SETS THE TREE SWAY
+            //var randomN = 0;
             this.ctx.rotate(randomN);
 
             if (nums[index] < this.spread) {
