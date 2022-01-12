@@ -190,8 +190,8 @@
         
         
                             // Random integer from -0.1 to 0.1
-                            //var randomN = -(Math.random() * 0.2) + 0.1; // SETS THE TREE SWAY
-                            var randomN = 0;
+                            var randomN = -(nums[index] * 0.2) + 0.1; // SETS THE TREE SWAY
+                            //var randomN = 0;
                             this.ctx.rotate(randomN);
         
                             if (nums[index] < this.spread) {
