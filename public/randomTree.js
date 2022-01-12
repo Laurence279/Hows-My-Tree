@@ -1,110 +1,34 @@
 
-//#region Tree Stage Planning
-
-/*
-
-Seed Types:
-
-Fir:
-Acacia:
-Maple:
-Redwood:
-Elder:
-Oak:
-Birch:
-Willow:
-
-Fir:
-Stage 1:
-
-Single, small branch. No leaves
-
-            const treeSpread = 1;
-            const drawLeaves = false;
-            const maxDepth = 1;
-            const leaveType = tree.SMALL_LEAVES;
-            const lengthFactor = 10;
-            const maxBranchWidth = 5;
-            const colour = "#008000";
-
-Stage 2:
-
-Trunk with 2 branching paths. No Leaves
-
-            const treeSpread = 0.9;
-            const drawLeaves = false;
-            const maxDepth = 2;
-            const leaveType = tree.SMALL_LEAVES;
-            const lengthFactor = 10;
-            const maxBranchWidth = 5;
-            const colour = "#008000";
-
-
-Stage 3:
-
-Branching paths are longer and also have branches. No leaves
-
-            const treeSpread = 0.8;
-            const drawLeaves = false;
-            const maxDepth = 3;
-            const leaveType = tree.SMALL_LEAVES;
-            const lengthFactor = 10;
-            const maxBranchWidth = 5;
-            const colour = "#008000";
-
-Stage 4:
-
-
-
-Stage 5:
-
-Stage 6:
-
-Stage 7:
-
-Stage 8:
-
-Stage 9:
-
-Stage 10:
-
-
-*/
-
-//#endregion
-
-
-//#region Tree Generator Code
-
-
-        /* Fetch data from server here
-                What data do we need?
-                    - The seed used to regenerate the array on the client
-                    - The stage of growth the tree is at (scale)
-                    - Other properties of the tree?
-                        - Branch width
-                        - Colour
-                        - Leaf Type
-
-                e.g tree = {
-                    seed: 100,
-                    scale: 0.7,
-                    maxBranchWith: 5,
-                    colour: "#764f39"
-                    leafType: MEDIUM_LEAVES
-
-                }
-         */
 
                 var height = 500;
                 var width = 600;
         
                 // Store data from database object here
-                let seed = 100; // Generate this number when creating tree
+                let seed = Math.floor(Math.random()*1000000+1); // Generate this number when creating tree
                 const scale = 0.75; //0.2 - 0.75 - Growth stage - Increases over time.
-                const maxBranchWidth = 20; //1 - 40 - Allow user to choose
-                const colour = "#764f39"; // Allow user to choose
-                const leaves = "big" // Allow user to choose
+                const maxBranchWidth = Math.floor(Math.random()*30+1); //1 - 30 - Allow user to choose
+                const randomColor = () => {
+                    let color = '#';
+                    for (let i = 0; i < 6; i++){
+                       const random = Math.random();
+                       const bit = (random * 16) | 0;
+                       color += (bit).toString(16);
+                    };
+                    return color;
+                 };
+                const colour = randomColor(); // Allow user to choose
+                const randomLeafSize = () => {
+                    const num = Math.floor(Math.random() * 4+1)
+                    console.log(num)
+                    switch(num){
+                        case 1: return "thin"
+                        case 2: return "small"
+                        case 3: return "medium"
+                        case 4: return "big"
+                        default: return "medium"
+                    }
+                }
+                const leaves = randomLeafSize() // Allow user to choose
         
                 // Generate the seed's array on client side here:
                 let index = 0;

@@ -2,8 +2,17 @@
 ;
 (async function getTreeById() {
     const id = window.location.href.split("/").pop();
+    const isNum = /^\d+$/.test(id);
+    if(!isNum) {
+        sendErrorPage()
+        return;
+    }
     const response = await fetch(`/trees/${id}`);
     const data = await response.json();
+    if(data.payload.length <= 0){
+        sendErrorPage();
+        return;
+    }
     responseData = data;
     treeData = responseData.payload[0]
     await initialiseTreeCanvas(treeData);
@@ -15,11 +24,17 @@
     updateTreeDetails(treeData);
 })();
 
+function sendErrorPage(){
+
+        document.querySelector("#wrap").innerHTML = "<h1>Tree Not Found!</h1>"
+}
+
 var responseData = {};
 var treeData = {}
 
 
 // Cache
+
 
 const treeDisplay = document.querySelector("#user-tree-display")
 const deleteOverlay = document.querySelector("#delete-overlay")

@@ -45,6 +45,7 @@ body {
 .wrap {
     margin: 2em;
     margin-bottom: 0;
+    text-align: center;
     position:relative;
 }
 
@@ -211,7 +212,7 @@ nav {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: start;
 
     font-size: 1rem;
     margin: 0;
@@ -433,6 +434,24 @@ canvas{
     margin: 0;
 }
 
+/*About Page*/
+
+#about-container{
+    display:flex;
+    align-items: center;
+}
+
+#about-info{
+    text-align: left;
+    max-width: 800px;
+    margin: 0 4em;
+}
+
+#about-info h3{
+    margin: 1em 0;
+}
+
+
 /* Media Queries */
 
 @media (max-width: 1000px) {
@@ -464,8 +483,6 @@ canvas{
     #nav-logo {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
 
         font-size: 0.75rem;
         margin: 0;
@@ -560,6 +577,30 @@ canvas{
     #new-tree-display {
         display:none
     }
+
+/*About Page*/
+
+#about-container{
+    display:flex;
+    align-items: center;
+    flex-direction: column-reverse;
+    margin: 1em 0;
+}
+
+#about-info{
+    text-align: left;
+    max-width: 800px;
+    margin: 0;
+}
+
+#about-info h3{
+    margin: 1em 0;
+}
+
+#about-info p {
+    margin: 0;
+}
+
 
 
 }

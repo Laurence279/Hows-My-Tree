@@ -19,6 +19,11 @@ export async function getTrees() {
 // Get tree by ID
 
 export async function getTreeById(id) {
+    id = Number(id);
+    const isNum = /^\d+$/.test(id);
+    if(!isNum) {
+        return;
+    }
     const response = await query("SELECT * FROM trees01 WHERE id = $1;", [id])
     return response.rows;
 }

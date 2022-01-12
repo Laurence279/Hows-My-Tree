@@ -40,9 +40,15 @@ app.get("/plant", function (req, res) {
     res.sendFile(__dirname + "/public/create.html")
 })
 
+app.get("/about", async (req, res) => {
+    res.sendFile(__dirname + "/public/about.html")
+})
+
+
 app.get("/:id", async (req, res) => {
     res.sendFile(__dirname + "/public/tree.html")
 })
+
 
 
 export default app;
