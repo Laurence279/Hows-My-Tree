@@ -272,14 +272,14 @@ header {
 #new-tree-display{
     display:flex;
     align-items:center;
-
+    margin-top: 5em;
 }
 
 
 #create-new-plant-container {
     display: flex;
     justify-content: space-evenly;
-    margin: 0 4em;
+    margin: 2em 4em;
     gap: 2em;
 }
 

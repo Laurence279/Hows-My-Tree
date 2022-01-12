@@ -192,6 +192,7 @@ function drawTree(treeData) {
     const scale = treeData.scale; //0 - 0.7 - Growth stage - Increases over time.
     const maxBranchWidth = treeData.branchwidth
     const colour = treeData.colour; // Allow user to choose
+    const branchColour = treeData.branchcolour;
     const leaves = treeData.leaves; // Allow user to choose
 
 
@@ -220,7 +221,7 @@ function drawTree(treeData) {
 
     ctx.save();
     tree.draw(ctx, height, width, treeSpread, drawLeaves, leafType, lengthFactor, maxBranchWidth,
-        colour, scale);
+        colour, branchColour, scale);
     ctx.restore();
 }
 
@@ -257,6 +258,7 @@ var tree = {
     width: 0,
     drawLeaves: true,
     leavesColor: '',
+    branchColour: '',
     leafType: this.MEDIUM_LEAVES,
     lengthFactor: 200,
     maxBranchWidth: 10,
@@ -277,7 +279,7 @@ var tree = {
      * @param {boolean} leaves  draw leaves if set to true    
      *
      */
-    draw: function (ctx, h, w, spread, leaves, leafType, lengthFactor, maxBranchWidth, colour,
+    draw: function (ctx, h, w, spread, leaves, leafType, lengthFactor, maxBranchWidth, colour, branchColour,
         scale) {
 
 
@@ -318,7 +320,8 @@ var tree = {
         this.ctx.translate(this.width / 2, this.height);
         // Set the leaves to a random color
         this.leavesColor = colour;
-        // Set branch thickness
+        // Set branch thickness and colour
+        this.branchColour = branchColour;
         this.ctx.lineWidth = 1 + (1 * this.maxBranchWidth); // Was Random number 
         this.ctx.lineJoin = 'round';
 
@@ -343,7 +346,7 @@ var tree = {
             index += 1
 
 
-
+            this.ctx.strokeStyle = this.branchColour;
             this.ctx.beginPath();
             this.ctx.moveTo(0, 0);
             this.ctx.lineTo(0, -(this.height / 10));

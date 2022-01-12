@@ -76,9 +76,10 @@ export async function createTree(tree) {
         ownerLastName,
         leaves,
         colour,
-        label,
-    } = tree
-     const response = await query("INSERT INTO trees01 (datePlanted, dateWatered,   timesWatered, ownerTitle, ownerFirstName, ownerLastName, seed, scale, branchwidth, leaves, colour, label, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *;", [datePlanted, dateWatered, timesWatered, ownerTitle, ownerFirstName, ownerLastName, seed, scale, branchWidth, leaves, colour, label, password])
+        branchColour,
+        label
+    } = tree;
+     const response = await query("INSERT INTO trees01 (datePlanted, dateWatered, timesWatered, ownerTitle, ownerFirstName, ownerLastName, seed, scale, branchwidth, leaves, colour, branchcolour, label, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *;", [datePlanted, dateWatered, timesWatered, ownerTitle, ownerFirstName, ownerLastName, seed, scale, branchWidth, leaves, colour, branchColour, label, password])
      return response.rows;
 }
 
@@ -106,10 +107,11 @@ export async function replaceTreeById(id, tree) {
         ownerLastName,
         seed,
         colour,
+        branchColour,
         label,
         password
     } = tree
-    const response = await query("UPDATE trees01 SET datePlanted = $1, dateWatered = $2, ownerTitle = $3, ownerFirstName = $4, ownerLastName = $5, seed = $6, colour = $7, label = $8, password = $9 WHERE id = $10;", [datePlanted, dateWatered, ownerTitle, ownerFirstName, ownerLastName, seed, colour, label, password, id])
+    const response = await query("UPDATE trees01 SET datePlanted = $1, dateWatered = $2, ownerTitle = $3, ownerFirstName = $4, ownerLastName = $5, seed = $6, colour = $7, branchcolour = $8 label = $9, password = $10 WHERE id = $11;", [datePlanted, dateWatered, ownerTitle, ownerFirstName, ownerLastName, seed, colour, branchColour, label, password, id])
     return response.rows;
 }
 

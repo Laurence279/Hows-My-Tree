@@ -3,7 +3,7 @@ import {
 } from "../db.js"
 import trees from "../../exampleTreeData.js"
 
-const sqlString = "INSERT INTO trees01(datePlanted, dateWatered , timesWatered, ownerTitle , ownerFirstName , ownerLastName , seed, scale, branchWidth,leaves ,colour , label , password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *"
+const sqlString = "INSERT INTO trees01(datePlanted, dateWatered , timesWatered, ownerTitle , ownerFirstName , ownerLastName , seed, scale, branchWidth,leaves ,colour , branchColour, label , password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *"
 
 
 
@@ -20,9 +20,10 @@ async function populateTable() {
         const branchWidth = trees[i].branchWidth
         const leaves = trees[i].leaves
         const colour = trees[i].colour
+        const branchColour = trees[i].branchColour
         const label = trees[i].label
         const password = trees[i].password
-        const response = await query(sqlString, [datePlanted, dateWatered, timesWatered, ownerTitle, ownerFirstName, ownerLastName, seed, scale, branchWidth, leaves, colour, label, password])
+        const response = await query(sqlString, [datePlanted, dateWatered, timesWatered, ownerTitle, ownerFirstName, ownerLastName, seed, scale, branchWidth, leaves, colour, branchColour, label, password])
         console.log(response.rows)
     }
 }

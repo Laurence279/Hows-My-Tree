@@ -159,6 +159,7 @@ async function populateTrees(data, numToRender, clearPage) {
             const scale = treeData.scale; //0.2 - 0.75 - Growth stage - Increases over time.
             const maxBranchWidth = treeData.branchwidth; //1 - 40 - Allow user to choose
             const colour = treeData.colour; // Allow user to choose
+            const branchColour = treeData.branchcolour;
             const leaves = treeData.leaves; // Allow user to choose
         
         
@@ -187,12 +188,11 @@ async function populateTrees(data, numToRender, clearPage) {
         
             ctx.save();
             tree.draw(ctx, height, width, treeSpread, drawLeaves, leafType, lengthFactor, maxBranchWidth,
-                colour, scale);
+                colour, branchColour, scale);
             ctx.restore();
         }
         
         function initialiseTreeCanvas(treeData, canvas) {
-        
         
             index = 0;
             var canvas = canvas;
@@ -222,6 +222,7 @@ async function populateTrees(data, numToRender, clearPage) {
             width: 0,
             drawLeaves: true,
             leavesColor: '',
+            branchColour: '',
             leafType: this.MEDIUM_LEAVES,
             lengthFactor: 200,
             maxBranchWidth: 10,
@@ -242,11 +243,9 @@ async function populateTrees(data, numToRender, clearPage) {
              * @param {boolean} leaves  draw leaves if set to true    
              *
              */
-            draw: function (ctx, h, w, spread, leaves, leafType, lengthFactor, maxBranchWidth, colour,
+            draw: function (ctx, h, w, spread, leaves, leafType, lengthFactor, maxBranchWidth, colour, branchColour,
                 scale) {
-        
-        
-        
+    
         
                 this.scale = scale
         
@@ -283,7 +282,8 @@ async function populateTrees(data, numToRender, clearPage) {
                 this.ctx.translate(this.width / 2, this.height);
                 // Set the leaves to a random color
                 this.leavesColor = colour;
-                // Set branch thickness
+                // Set branch thickness and colour
+                this.branchColour = branchColour
                 this.ctx.lineWidth = 1 + (1 * this.maxBranchWidth); // Was Random number 
                 this.ctx.lineJoin = 'round';
         
@@ -308,7 +308,7 @@ async function populateTrees(data, numToRender, clearPage) {
                     index += 1
         
         
-        
+                    this.ctx.strokeStyle = this.branchColour;
                     this.ctx.beginPath();
                     this.ctx.moveTo(0, 0);
                     this.ctx.lineTo(0, -(this.height / 10));
