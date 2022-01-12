@@ -15,8 +15,17 @@ async function getTrees() {
 };
 
 var responseData = {};
-var treeData = {}
+var treeData = []
 
+
+// setInterval(() => {
+//     if(document.documentElement.scrollTop >= 200){
+//         const arr = treeData.filter((item)=>{
+//             return !treesLoaded.includes(item.id)
+//         })
+//         populateTrees(arr)
+//     }
+// }, 100);
 
 // async function requestTreeUpdate(id) {
 //     const response = await fetch(`/trees/${id}`, {
@@ -50,7 +59,10 @@ async function createNewTree(object) {
     const treeContent = document.createElement("div");
     treeContent.classList.add("tree-container")
     const img = document.createElement("canvas");
-    initialiseTreeCanvas(object, img)
+
+        initialiseTreeCanvas(object, img)
+
+
 
     const id = document.createElement("h4");
     id.textContent = `${object.id}`;
@@ -78,24 +90,6 @@ async function populateTrees(data) {
     }
 }
 
-/* Fetch data from server here
-        What data do we need?
-            - The seed used to regenerate the array on the client
-            - The stage of growth the tree is at (scale)
-            - Other properties of the tree?
-                - Branch width
-                - Colour
-                - Leaf Type
-
-        e.g tree = {
-            seed: 100,
-            scale: 0.7,
-            maxBranchWith: 5,
-            colour: "#764f39"
-            leafType: MEDIUM_LEAVES
-
-        }
- */
 
         var height = 500;
         var width = 600;

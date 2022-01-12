@@ -215,6 +215,13 @@ header {
 
 /* Create new Tree */
 
+#new-tree-display{
+    display:flex;
+    align-items:center;
+
+}
+
+
 #create-new-plant-container {
     display: flex;
     justify-content: space-evenly;
@@ -488,7 +495,7 @@ canvas{
     }
 
     #new-tree-display {
-        display: none;
+        display:none
     }
 
 

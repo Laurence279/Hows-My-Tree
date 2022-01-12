@@ -135,8 +135,6 @@ function createRain(){
             setTimeout(createRain, 5)
         }
     }
-    
-
 
 
 //Initialise rain
