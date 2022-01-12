@@ -114,7 +114,7 @@ async function populateTrees(data, numToRender, clearPage) {
     }
 
     const trees = data.sort(function (a, b) {
-        return a.id - b.id
+        return new Date(a.datewatered) - new Date(b.datewatered)
     }).reverse()
 
     for (let i = 0; i < numToRender; i++) {
