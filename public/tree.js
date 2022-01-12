@@ -10,6 +10,7 @@
     if (new Date(treeData.datewatered).toDateString() == new Date(responseData.serverTime).toDateString()) {
         waterBtn.textContent= ("Already watered today!")
         waterBtn.disabled = true;
+        waterBtn.classList.add("main-btn-disabled")
     }
     updateTreeDetails(treeData);
 })();
@@ -73,6 +74,7 @@ waterBtn.addEventListener("click", async (e) => {
     if (new Date(treeData.datewatered).toDateString() == new Date(responseData.serverTime).toDateString()) {
         waterBtn.textContent= ("Already watered today!")
         waterBtn.disabled = true;
+        waterBtn.classList.add("main-btn-disabled")
         return
     }
     e.preventDefault();

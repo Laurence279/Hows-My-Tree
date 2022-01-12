@@ -5,7 +5,9 @@
 :root {
     --primary-color: #1c6819;
     --main-btn-colour: #78c1ec;
+    --main-btn-colour-pressed: #60a2c9;
     --danger-btn-colour: #E24A54;
+    --danger-btn-colour-pressed: #d33943;
     --main-background-color: #d0d8ce;
     --tertiary-color: #72AD7f;
     --quad-color: #8ccf99;
@@ -20,11 +22,13 @@
     padding: 0;
     box-sizing: border-box;
     font-family: var(--main-font);
+    
 }
 
 a {
     text-decoration: none;
     color: unset;
+    display:inline-block;
 }
 
 p {
@@ -38,6 +42,15 @@ body {
 
 .wrap {
     margin: 2em;
+    margin-bottom: 0;
+    position:relative;
+}
+
+.btn-container{
+    margin: 2em 0;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .main-btn {
@@ -45,8 +58,17 @@ body {
     padding: 0.5em 3em;
     font-size: 1.25rem;
     background-color: var(--main-btn-colour);
-    margin: 2em auto;
-    display: block;
+    border-radius: 25px;
+    border-style: none;
+    box-shadow: 2px 2px #395840;
+}
+
+.main-btn:active{
+    background-color: var(--main-btn-colour-pressed);
+}
+
+.main-btn-disabled:active{
+    background-color: var(--main-btn-colour);
 }
 
 .danger-btn {
@@ -54,13 +76,21 @@ body {
     padding: 0.5em 1.5em;
     font-size: 1.125rem;
     background-color: var(--danger-btn-colour);
-
+    border-radius: 25px;
+    border-style: none;
+    box-shadow: 2px 2px #395840;
 }
 
 .danger-btn-small {
     padding: 0.25em 0.5em;
     background-color: var(--danger-btn-colour);
+    border-radius: 25px;
+    border-style: none;
+    box-shadow: 2px 2px #395840;
+}
 
+.danger-btn:active, .danger-btn-small:active{
+    background-color: var(--danger-btn-colour-pressed)
 }
 
 
@@ -94,7 +124,6 @@ h1 {
     grid-template-rows: repeat(auto-fit, auto);
     justify-content: center;
     margin: 0 2em;
-
 }
 
 .row {
@@ -208,8 +237,12 @@ header {
 
 #search-btn {
     font-size: 1rem;
-    padding: 0.25em;
+    padding: 0.375em;
     background-color: var(--main-btn-colour);
+    border-radius: 25px;
+    border-style: none;
+    box-shadow: 2px 2px #395840;
+    cursor: pointer;
 }
 
 
@@ -293,6 +326,7 @@ canvas{
 }
 
 #user-tree-display-container{
+    margin-bottom: 2em;
  overflow:hidden;
 }
 
@@ -339,7 +373,7 @@ canvas{
 #delete-btn-container {
     position: absolute;
     right: 0;
-    bottom: 0;
+    top: 0;
 }
 
 #delete-close-btn {
@@ -430,6 +464,7 @@ canvas{
 
     }
 
+
     #search {
         padding: 0.25em;
         margin: 0.25em 0;
@@ -438,7 +473,12 @@ canvas{
     #search-box div {
         display: flex;
         flex-direction: column;
+        align-items: center;
         margin-bottom: 2em;
+    }
+
+    #search-btn{
+       padding: 0.5em;
     }
 
     #user-tree-display-content h1 {
@@ -461,6 +501,8 @@ canvas{
 
     #delete-btn-container {
         position: relative;
+        margin-top: 2em;
+        text-align: center;
     }
 
     /* Create new Tree */

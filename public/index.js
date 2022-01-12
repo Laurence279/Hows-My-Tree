@@ -45,7 +45,7 @@ const searchBtn = document.querySelector("#search-btn")
 const displayGrid = document.querySelector("#tree-display-grid")
 
 searchBtn.addEventListener("click", async (e) => {
-    displayGrid.innerHTML = ""
+    displayGrid.innerHTML = "<h1>Fetching Trees!</h1>"
     const response = await fetch(`/trees?search=${search.value}`);
     const data = await response.json();
     responseData = data;
