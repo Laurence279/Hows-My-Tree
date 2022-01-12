@@ -6,6 +6,8 @@
     --primary-color: #1c6819;
     --main-btn-colour: #78c1ec;
     --main-btn-colour-pressed: #60a2c9;
+    --secondary-btn-colour: #b2cad8;
+    --secondary-btn-colour-pressed: #a7b1b8;
     --danger-btn-colour: #E24A54;
     --danger-btn-colour-pressed: #d33943;
     --main-background-color: #d0d8ce;
@@ -69,6 +71,20 @@ body {
 
 .main-btn-disabled:active{
     background-color: var(--main-btn-colour);
+}
+
+.secondary-btn {
+
+    padding: 0.5em 3em;
+    font-size: 1.25rem;
+    background-color: var(--secondary-btn-colour);
+    border-radius: 25px;
+    border-style: none;
+    box-shadow: 2px 2px #395840;
+}
+
+.secondary-btn:active{
+    background-color: var(--secondary-btn-colour-pressed);
 }
 
 .danger-btn {
@@ -159,6 +175,11 @@ a:nth-child(even) h4 {
 }
 
 /*Minor elements..*/
+
+
+#load-btn{
+    margin: 1em 0;
+}
 
 nav {
     position: relative;

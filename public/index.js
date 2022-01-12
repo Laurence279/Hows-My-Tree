@@ -5,7 +5,8 @@
     const data = await response.json();
     responseData = data;
     treeData = data.payload;
-    populateTrees(treeData)
+    showButtons();
+    populateTrees(treeData, TREES_TO_RENDER_PER_LOAD, true)
     
 })();
 
@@ -16,6 +17,8 @@ async function getTrees() {
 
 var responseData = {};
 var treeData = []
+var treesRendered = [];
+const TREES_TO_RENDER_PER_LOAD = 8;
 
 
 // setInterval(() => {
@@ -43,15 +46,34 @@ var treeData = []
 const search = document.querySelector("#search")
 const searchBtn = document.querySelector("#search-btn")
 const displayGrid = document.querySelector("#tree-display-grid")
+const loadBtn = document.querySelector("#load-btn")
+const plantBtn = document.querySelector("#plant-btn")
+
+
+function showButtons(){
+    loadBtn.hidden = false;
+    plantBtn.hidden = false;
+}
 
 searchBtn.addEventListener("click", async (e) => {
+    //Clear the grid and render new trees based on query (Can be all trees if user so wishes..)
     displayGrid.innerHTML = "<h1>Fetching Trees!</h1>"
     const response = await fetch(`/trees?search=${search.value}`);
     const data = await response.json();
     responseData = data;
     treeData = data.payload;
-    populateTrees(treeData)
+    populateTrees(treeData, TREES_TO_RENDER_PER_LOAD, true)
 })
+
+loadBtn.addEventListener("click", async (e) =>{
+    //Get trees that haven't been rendered yet and append to the already rendered trees.
+    const treesToRender = treeData.filter((item)=>{
+        return !treesRendered.includes(item.id)
+    })
+    console.log(treesToRender)
+    if(treesToRender.length <= 0) return
+    populateTrees(treesToRender, TREES_TO_RENDER_PER_LOAD, false)
+}) 
 
 async function createNewTree(object) {
     const tree = document.createElement("a")
@@ -59,11 +81,7 @@ async function createNewTree(object) {
     const treeContent = document.createElement("div");
     treeContent.classList.add("tree-container")
     const img = document.createElement("canvas");
-
-        initialiseTreeCanvas(object, img)
-
-
-
+    initialiseTreeCanvas(object, img) //Very expensive
     const id = document.createElement("h4");
     id.textContent = `${object.id}`;
     const ownerDetails = document.createElement("h3");
@@ -79,14 +97,31 @@ async function createNewTree(object) {
     return tree
 }
 
-async function populateTrees(data) {
-    displayGrid.innerHTML = ""
+async function populateTrees(data, numToRender, clearPage) {
+    /*  Data: The list of trees to be rendered
+        numToRender: The amount of trees to render before stopping
+        clearPage: Bool - Should the page be cleared/reset first? Set true if query, false if appending additional data.
+
+        If list of trees is less than the total to be rendered, reassign the number to match and hide the load more button.
+    */
+    if(data.length < numToRender) {
+        numToRender = data.length
+        loadBtn.hidden = true;
+    }
+    if(clearPage) {
+        displayGrid.innerHTML = ""
+        treesRendered = [];
+        loadBtn.hidden = false;
+    }
+
     const trees = data.sort(function (a, b) {
         return a.id - b.id
     }).reverse()
-    for (let i = 0; i < trees.length; i++) {
+
+    for (let i = 0; i < numToRender; i++) {
         const tree = await createNewTree(trees[i])
         displayGrid.appendChild(tree)
+        treesRendered.push(trees[i].id)
     }
 }
 
