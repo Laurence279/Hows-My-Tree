@@ -70,7 +70,6 @@ loadBtn.addEventListener("click", async (e) =>{
     const treesToRender = treeData.filter((item)=>{
         return !treesRendered.includes(item.id)
     })
-    console.log(treesToRender)
     if(treesToRender.length <= 0) return
     populateTrees(treesToRender, TREES_TO_RENDER_PER_LOAD, false)
 }) 
