@@ -19,6 +19,7 @@ var responseData = {};
 var treeData = []
 var treesRendered = [];
 const TREES_TO_RENDER_PER_LOAD = 8;
+var sortMethod = "last-watered"
 
 
 // setInterval(() => {
@@ -45,6 +46,7 @@ const TREES_TO_RENDER_PER_LOAD = 8;
 
 const search = document.querySelector("#search")
 const searchBtn = document.querySelector("#search-btn")
+const sortDropdown = document.querySelector("#sort-dropdown")
 const displayGrid = document.querySelector("#tree-display-grid")
 const loadBtn = document.querySelector("#load-btn")
 const plantBtn = document.querySelector("#plant-btn")
@@ -74,6 +76,19 @@ loadBtn.addEventListener("click", async (e) =>{
     populateTrees(treesToRender, TREES_TO_RENDER_PER_LOAD, false)
 }) 
 
+sortDropdown.value = "last-watered";
+sortDropdown.addEventListener("change", async (e)=>{
+
+    sortMethod = (e.target.value)
+    // const treesToRender = treeData.filter((item)=>{
+    //     return treesRendered.includes(item.id)
+    // })
+    // if(treesToRender.length <= 0) return
+    populateTrees(treeData, TREES_TO_RENDER_PER_LOAD, true)
+
+})
+
+
 async function createNewTree(object) {
     const tree = document.createElement("a")
     tree.href = `/${object.id}`
@@ -82,6 +97,7 @@ async function createNewTree(object) {
     const img = document.createElement("canvas");
     initialiseTreeCanvas(object, img) //Very expensive
     const id = document.createElement("h4");
+    id.classList.add("tree-id")
     id.textContent = `${object.id}`;
     const ownerDetails = document.createElement("h3");
     ownerDetails.textContent = `${object.ownertitle} ${object.ownerfirstname[0]}. ${object.ownerlastname}`
@@ -114,7 +130,12 @@ async function populateTrees(data, numToRender, clearPage) {
     }
 
     const trees = data.sort(function (a, b) {
-        return new Date(a.datewatered) - new Date(b.datewatered)
+        switch(sortMethod){
+            case "last-watered":
+                return new Date(a.datewatered) - new Date(b.datewatered)
+            case "last-created":
+                return a.id - b.id
+        }
     }).reverse()
 
     for (let i = 0; i < numToRender; i++) {

@@ -240,7 +240,7 @@ header {
 
 }
 
-#search-box div {
+#search-box {
     display: flex;
 }
 
@@ -266,6 +266,18 @@ header {
     border-style: none;
     box-shadow: 2px 2px #395840;
     cursor: pointer;
+}
+
+#sort-container{
+    display:flex;
+    margin: 1em 0;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+}
+
+#sort-dropdown{
+    padding: 0.25em;
 }
 
 
@@ -519,6 +531,8 @@ canvas{
     #search-btn{
        padding: 0.5em;
     }
+
+
 
     #user-tree-display-content h1 {
         font-family: var(--secondary-font)
