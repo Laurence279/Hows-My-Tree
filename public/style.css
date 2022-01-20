@@ -183,25 +183,31 @@ a:nth-child(even) h4 {
 }
 
 nav {
+
     position: relative;
     display: flex;
     align-items: center;
+    gap: 1em;
     padding: 1em;
-
     border-bottom: solid black 2px;
     background-color: var(--secondary-background-color);
 }
 
-.nav-link:first-of-type {
-    margin-left: 2em;
+#first-nav{
+    margin-left: 1em;
 }
 
 
-.nav-link {
-    padding: 0.25em;
-    margin: 0 1em;
-    text-decoration: underline;
 
+.nav-link {
+    
+    width: 80px;
+    height: 40px;
+    margin: 0;
+    background-color: var(--secondary-btn-colour);
+    border-radius: 25px;
+    border-style: none;
+    box-shadow: 2px 2px #395840;
 }
 
 .nav-link:hover {
@@ -212,8 +218,7 @@ nav {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: start;
-
+    align-items: center;
     font-size: 1rem;
     margin: 0;
     padding: 0;
