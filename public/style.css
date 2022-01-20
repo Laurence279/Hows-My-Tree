@@ -195,6 +195,11 @@ nav {
 
 #first-nav{
     margin-left: 1em;
+
+}
+
+a:link{
+    cursor:default;
 }
 
 
@@ -242,7 +247,6 @@ header {
 #search-box {
     display: flex;
     flex-direction: column;
-
 }
 
 #search-box {
