@@ -67,13 +67,19 @@ searchBtn.addEventListener("click", async (e) => {
     populateTrees(treeData, TREES_TO_RENDER_PER_LOAD, true)
 })
 
+
 loadBtn.addEventListener("click", async (e) =>{
     //Get trees that haven't been rendered yet and append to the already rendered trees.
-    const treesToRender = treeData.filter((item)=>{
-        return !treesRendered.includes(item.id)
-    })
-    if(treesToRender.length <= 0) return
-    populateTrees(treesToRender, TREES_TO_RENDER_PER_LOAD, false)
+    loadBtn.textContent = "One moment..."
+    setTimeout(() => {
+        const treesToRender = treeData.filter((item)=>{
+            return !treesRendered.includes(item.id)
+        })
+        populateTrees(treesToRender, TREES_TO_RENDER_PER_LOAD, false)
+        loadBtn.textContent = "Load More"
+    }, 10);
+
+
 }) 
 
 sortDropdown.value = "last-watered";
@@ -143,6 +149,13 @@ async function populateTrees(data, numToRender, clearPage) {
         displayGrid.appendChild(tree)
         treesRendered.push(trees[i].id)
     }
+    const newTreesToRender = treeData.filter((item)=>{
+        return !treesRendered.includes(item.id)
+    })
+    if(newTreesToRender.length <= 0){
+        loadBtn.hidden = true
+        return
+    } 
 }
 
 

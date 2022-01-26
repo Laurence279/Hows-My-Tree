@@ -16,9 +16,9 @@
             <p>How's My</p>
             <p>Tree</p>
         </div>
-        <a class="nav-a" id="first-nav" href="/"><button class="nav-link">Home</button></a>
-        <a class="nav-a" href="/plant"><button class="nav-link">Plant</button></a>
-        <a class="nav-a" href="/about"><button class="nav-link">About</button></a>
+        <a class="nav-a" id="first-nav" href="/">Home</a>
+        <a class="nav-a nav-a-active" href="/plant">Plant</a>
+        <a class="nav-a" href="/about">About</a>
     </nav>
     <div class="wrap">
         <header>
@@ -27,54 +27,67 @@
         </header>
 
         <div id="create-new-plant-container">
+
             <form action="/trees" method="post">
-                <h3>Owner Details</h3>
-                <label for="ownerTitle">Title:</label><br>
-                <input required maxlength="12" type="text" id="ownerTitle" name="ownerTitle"
-                    placeholder="Mr/Mrs/Dr"><br>
-                <label for="ownerFirstName">First name:</label><br>
-                <input required maxlength="12" type="text" id="ownerFirstName" name="ownerFirstName"
-                    placeholder="First Name"><br>
-                <label for="ownerLastName">Last name:</label><br>
-                <input required maxlength="12" type="text" id="ownerLastName" name="ownerLastName"
-                    placeholder="Last Name"><br>
-                <h3>Tree Details</h3>
-                <label for="thickness">Thickness:</label><br>
 
-                <select name="thickness" id="thickness">
-                    <option value="stick">Stick</option>
-                    <option value="thin">Thin</option>
-                    <option value="normal">Normal</option>
-                    <option value="thick">Thick</option>
-                    <option value="chonk">Chonk</option>
-                </select><br>
-                <label for="leaves">Leaf Size:</label><br>
+                <div id="owner-form-container">
+                    <div>
+                        <h3>Owner Details</h3>
+                        <label for="ownerTitle">Title:</label><br>
+                        <input required maxlength="12" type="text" id="ownerTitle" name="ownerTitle"
+                            placeholder="Mr/Mrs/Dr"><br>
+                        <label for="ownerFirstName">First name:</label><br>
+                        <input required maxlength="12" type="text" id="ownerFirstName" name="ownerFirstName"
+                            placeholder="First Name"><br>
+                        <label for="ownerLastName">Last name:</label><br>
+                        <input required maxlength="12" type="text" id="ownerLastName" name="ownerLastName"
+                            placeholder="Last Name"><br>
+                    </div>
+    
+                    <div>
+                        <h3>Tree Details</h3>
+                        <label for="thickness">Thickness:</label><br>
+        
+                        <select name="thickness" id="thickness">
+                            <option value="stick">Stick</option>
+                            <option value="thin">Thin</option>
+                            <option value="normal">Normal</option>
+                            <option value="thick">Thick</option>
+                            <option value="chonk">Chonk</option>
+                        </select><br>
+                        <label for="leaves">Leaf Size:</label><br>
+        
+                        <select name="leaves" id="leaves">
+                            <option value="thin">Thin</option>
+                            <option value="small">Small</option>
+                            <option value="medium">Medium</option>
+                            <option value="big">Large</option>
+                        </select><br>
+                        <label for="colour">Leaf Colour:</label><br>
+                        <input required maxlength="12" type="color" id="colour" name="colour"><br>
+                        <label for="colour">Trunk/Branch Colour:</label><br>
+                        <input required maxlength="12" type="color" id="branchColour" name="branchColour"><br>
+                        <label for="label">Tree Label/Name:</label><br>
+                        <input required maxlength="30" name="label" id="label" cols="30" rows="3"
+                            placeholder="Tree Description/Label"><br>
+    
+                    </div>
 
-                <select name="leaves" id="leaves">
-                    <option value="thin">Thin</option>
-                    <option value="small">Small</option>
-                    <option value="medium">Medium</option>
-                    <option value="big">Large</option>
-                </select><br>
-                <label for="colour">Leaf Colour:</label><br>
-                <input required maxlength="12" type="color" id="colour" name="colour"><br>
-                <label for="colour">Trunk/Branch Colour:</label><br>
-                <input required maxlength="12" type="color" id="branchColour" name="branchColour"><br>
-                <label for="label">Tree Label/Name:</label><br>
-                <input required maxlength="30" name="label" id="label" cols="30" rows="3"
-                    placeholder="Tree Description/Label"><br>
-                <h3>Password</h3>
-                <label for="password">Password:</label><br>
-                <input required maxlength="20" name="password" id="password" cols="30" rows="3"
-                    placeholder="Required for Deletion"><br>
+                </div>
+              
+
+<div id="password-container">
+
+    <label for="password"><h3>Password</h3></label>
+    <input required maxlength="20" name="password" id="password" cols="30" rows="3"
+        placeholder="Required for Deletion"><br>
+</div>
+               
                     <div class="btn-container">
                         <button class="main-btn" type="submit">Plant</button>
                     </div>
 
             </form>
-            <div id="new-tree-display">
-                <img class="tree-image" src="images/10.png" alt="tree">
-            </div>
         </div>
     </div>
 

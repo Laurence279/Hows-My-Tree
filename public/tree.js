@@ -42,6 +42,7 @@ const treeDetailsOwner = document.querySelector("#tree-details-owner")
 const treeDetailsDatePlanted = document.querySelector("#tree-details-date-planted");
 const treeDetailsLabel = document.querySelector("#tree-details-label");
 const treeId = document.querySelector("#tree-id")
+const treeGrowth = document.querySelector("#tree-growth-stage")
 const waterBtn = document.querySelector("#water-btn")
 const deleteBtn = document.querySelector("#delete-btn")
 const deleteBtnConfirm = document.querySelector("#delete-btn-confirm")
@@ -119,6 +120,7 @@ async function makePatchRequest(update, value) {
 
 function updateTreeDetails(data) {
     treeId.textContent = `${data.id}`;
+    treeGrowth.textContent = displayIfFullyGrown(data.scale);
     treeDetailsOwner.textContent = `${data.ownertitle} ${data.ownerfirstname} ${data.ownerlastname}`
     treeDetailsDatePlanted.textContent = `Planted: ${new Date(data.dateplanted.split("T")[0]).toLocaleDateString('en-us',{
         year:"numeric",
@@ -126,6 +128,10 @@ function updateTreeDetails(data) {
         day:"numeric"
     })}`;
     treeDetailsLabel.textContent = data.label;
+}
+
+function displayIfFullyGrown(scale){
+    return scale === 0.7 ? "Fully Grown" : "";
 }
 
 

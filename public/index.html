@@ -15,17 +15,17 @@
             <p>How's My</p>
             <p>Tree</p>
         </div>
-        <a class="nav-a" id="first-nav" href="/"><button class="nav-link">Home</button></a>
-        <a class="nav-a" href="/plant"><button class="nav-link">Plant</button></a>
-        <a class="nav-a" href="/about"><button class="nav-link">About</button></a>
+        <a class="nav-a nav-a-active" id="first-nav" href="/">Home</a>
+        <a class="nav-a" href="/plant">Plant</a>
+        <a class="nav-a" href="/about">About</a>
            
     </nav>
     <div class="wrap">
         <header>
-            <h1>The Garden</h1>
+            <h1 id="page-title">The Garden</h1>
 
             <div class="btn-container">
-                <a href="/plant"><button id="plant-btn" class="main-btn" hidden>Plant a Tree</button></a>
+                <a href="/plant"><button id="plant-btn" class="main-btn" hidden>🌱 Plant a Tree</button></a>
             </div>
 
             <div id="search-box">
@@ -33,12 +33,12 @@
 
                 <div>
 
-                    <label for="search"></label>
-                    <input id="search" name="search" type="text" placeholder="Enter Owner/ID">
+                    <div id="search-box-input">
+                        <label for="search"></label>
+                        <input id="search" name="search" type="text" placeholder="Enter Owner/ID">
+                        <button id="search-btn" type="button">🔍</button>
+                    </div>
 
-
-
-                    <button id="search-btn" type="button">🔍</button>
                     
                     <div id="sort-container">
                         <label for="sort-dropdown">Sort By:</label>

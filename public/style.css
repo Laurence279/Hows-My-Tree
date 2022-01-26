@@ -3,17 +3,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Maitree:wght@200;400;700&family=Patrick+Hand&family=Quicksand:wght@300;500;700&display=swap');
 
 :root {
-    --primary-color: #1c6819;
-    --main-btn-colour: #78c1ec;
-    --main-btn-colour-pressed: #60a2c9;
-    --secondary-btn-colour: #b2cad8;
-    --secondary-btn-colour-pressed: #a7b1b8;
+    --primary-color:     #1c6819;
+    --main-btn-colour: #397537;
+    --main-btn-colour-hover: #3c8a39;
+    --main-btn-colour-pressed: #388d35;
+    --secondary-btn-colour: #beb2b2 ;
+    --secondary-btn-colour-pressed: #b4a6a6;
     --danger-btn-colour: #E24A54;
     --danger-btn-colour-pressed: #d33943;
-    --main-background-color: #d0d8ce;
-    --tertiary-color: #72AD7f;
-    --quad-color: #8ccf99;
-    --secondary-background-color: #e6d0c3;
+    --main-background-color: #dbddd8;
+    --nav-color: #e9e9e9;
+    --tertiary-color: #a8d3b1;
+    --quad-color: #9ed39c;
+    --secondary-background-color: #d8dfd2;
     --title-font: 'Patrick Hand', cursive;
     --main-font: 'Quicksand', sans-serif;
     --secondary-font: 'Maitree', serif;
@@ -57,13 +59,19 @@ body {
 }
 
 .main-btn {
-
-    padding: 0.5em 3em;
+    padding: 0.5em 1em;
     font-size: 1.25rem;
     background-color: var(--main-btn-colour);
-    border-radius: 25px;
+    border-radius: 10px;
     border-style: none;
-    box-shadow: 2px 2px #395840;
+    color:#fff;
+    transition: 0.2s background-color;
+}
+
+.main-btn:hover{
+    transition: 0.2s background-color;
+    cursor:pointer;
+    background-color: var(--main-btn-colour-hover);
 }
 
 .main-btn:active{
@@ -76,12 +84,18 @@ body {
 
 .secondary-btn {
 
-    padding: 0.5em 3em;
+    padding: 0.5em 1em;
     font-size: 1.25rem;
     background-color: var(--secondary-btn-colour);
-    border-radius: 25px;
+    border-radius: 10px;
+    transition: 0.2s background-color;
     border-style: none;
-    box-shadow: 2px 2px #395840;
+}
+
+.secondary-btn:hover{
+    transition: 0.2s background-color;
+    cursor:pointer;
+    background-color: var(--secondary-btn-colour-pressed);
 }
 
 .secondary-btn:active{
@@ -148,7 +162,6 @@ h1 {
     gap: 2em;
     justify-content: space-evenly;
 }
-
 .tree-container {
     background-color: #fff;
     justify-content: center;
@@ -156,6 +169,12 @@ h1 {
     flex-direction: column;
     box-shadow: 4px 4px #395840;
     text-align: center;
+    transition: 0.2s scale;
+
+}
+.tree-container:hover{
+    scale: 1.05;
+    transition: 0.2s scale;
 }
 
 .tree-container h3 {
@@ -180,44 +199,39 @@ a:nth-child(even) h4 {
 
 #load-btn{
     margin: 1em 0;
+    width: 10em;
 }
 
 nav {
-
+    
     position: relative;
     display: flex;
     align-items: center;
     gap: 1em;
-    padding: 1em;
-    border-bottom: solid black 2px;
-    background-color: var(--secondary-background-color);
+    padding: 2em 2em 0 2em;
+    background-color: var(--nav-color);
 }
 
 #first-nav{
-    margin-left: 1em;
-
+    margin-left: 8em;
 }
 
-.nav-a:link{
-    cursor:default;
+.nav-a{
+    border-bottom: solid transparent 2px;
+    font-size:1.5rem;
+    margin: 0 1em 0 0;
+    transition: 0.1s border-bottom;
 }
 
-
-
-.nav-link {
-    
-    width: 80px;
-    height: 40px;
-    margin: 0;
-    background-color: var(--secondary-btn-colour);
-    border-radius: 25px;
-    border-style: none;
-    box-shadow: 2px 2px #395840;
+.nav-a:hover{
+    border-bottom: solid black 2px;
+    transition: 0.1s border-bottom;
 }
 
-.nav-link:hover {
-    color: var(--primary-color);
+.nav-a-active{
+    border-bottom: solid black 2px;
 }
+
 
 #nav-logo {
     display: flex;
@@ -227,11 +241,11 @@ nav {
     font-size: 1rem;
     margin: 0;
     padding: 0;
-    top: 5px;
-    left: 10px;
+    top:20px;
     color: var(--primary-color);
     font-weight: 800;
-    font-family: var(--secondary-font)
+    font-family: var(--secondary-font);
+    position:absolute;
 }
 
 #nav-logo p {
@@ -262,7 +276,7 @@ header {
 #search {
 
     text-align: center;
-    padding: 0 1em;
+    padding: 0.25em 1em;
     font-size: 1rem;
     margin-right: 0.25em;
 }
@@ -300,14 +314,33 @@ header {
 
 
 #create-new-plant-container {
-    display: flex;
-    justify-content: space-evenly;
-    margin: 2em 4em;
-    gap: 2em;
+    width: 50%;
+    margin: auto;
+
+
 }
 
 form {
+    display:flex;
+    justify-content: center;
     font-size: 1.25rem;
+    flex-direction: column;
+    text-align: left;
+    align-items: center;
+}
+
+#owner-form-container{
+    display:flex;
+    justify-content: center;
+    gap: 4em;
+}
+#owner-form-container div{
+    border:solid black 2px;
+    background-color:var(--secondary-background-color);
+    border-radius: 6px;
+    padding: 2em;
+    padding-top:1em;
+    margin: 0.5em 0;
 }
 
 form input,
@@ -316,6 +349,7 @@ form select {
     padding: 0.125em 0.25em;
     width: 300px;
     margin: 0.375em 0;
+    background-color:var(--nav-color);
 }
 
 form h3 {
@@ -333,6 +367,10 @@ form h3 {
 
 .tree-image {
     width: 100%;
+}
+
+form .btn-container{
+    margin-top: 1em;
 }
 
 /* User tree page */
@@ -413,6 +451,13 @@ canvas{
     left: 5px;
     font-weight: 200;
 }
+#tree-growth-stage {
+    position: absolute;
+    margin: 0;
+    top: 5px;
+    right: 5px;
+    font-weight: 200;
+}
 
 #delete-btn-container {
     position: absolute;
@@ -478,18 +523,23 @@ canvas{
 
 @media (max-width: 1000px) {
 
-
-
+.wrap{
+    margin-top:1em;
+}
+h1{
+    margin: 0;
+}
     header {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin: 0;
+        margin:0;
     }
 
-    h1 {
-        margin: 0.25em 0;
-        text-align: center;
+    #page-title {
+        align-self:flex-start;
+        margin: 0;
+        text-align: left;
         font-size: 3.5rem;
     }
  
@@ -505,12 +555,12 @@ canvas{
     #nav-logo {
         display: flex;
         flex-direction: column;
-
+        position:absolute;
         font-size: 0.75rem;
         margin: 0;
         padding: 0;
-        top: 5px;
-        left: 10px;
+        top:15px;
+        left:10px;
         color: var(--primary-color);
         font-weight: 800;
         font-family: var(--secondary-font)
@@ -530,17 +580,14 @@ canvas{
         margin: 0.25em 0;
     }
 
-    #search-box div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 2em;
-    }
 
     #search-btn{
        padding: 0.5em;
     }
 
+    #first-nav{
+        margin-left: 2em;
+    }
 
 
     #user-tree-display-content h1 {
@@ -575,9 +622,9 @@ canvas{
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
-        margin: 0 4em;
-        gap: 2em;
+        margin: 0;
+        gap: 0;
+        width: 100%;
     }
 
     form {
@@ -598,6 +645,21 @@ canvas{
 
     }
 
+    #owner-form-container{
+        display:flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 1em;
+        align-items: center;
+    }
+    #owner-form-container div{
+        border:solid black 2px;
+        background-color:var(--secondary-background-color);
+        border-radius: 6px;
+        padding: 1em;
+        padding-top:1em;
+        margin: 0;
+    }
     #new-tree-display {
         display:none
     }
@@ -612,7 +674,7 @@ canvas{
 }
 
 #about-info{
-    text-align: left;
+    text-align: center;
     max-width: 800px;
     margin: 0;
 }
