@@ -107,17 +107,33 @@ body {
     padding: 0.5em 1.5em;
     font-size: 1.125rem;
     background-color: var(--danger-btn-colour);
-    border-radius: 25px;
+    border-radius: 10px;
     border-style: none;
-    box-shadow: 2px 2px #395840;
+    transition: 0.2s background-color;
+}
+
+.danger-btn:hover{
+    transition: 0.2s background-color;
+    cursor:pointer;
+    background-color: var(--danger-btn-colour-pressed);
+}
+
+.danger-btn:active{
+    background-color: var(--danger-btn-colour-pressed);
 }
 
 .danger-btn-small {
     padding: 0.25em 0.5em;
     background-color: var(--danger-btn-colour);
-    border-radius: 25px;
+    border-radius: 10px;
     border-style: none;
-    box-shadow: 2px 2px #395840;
+    transition: 0.2s background-color;
+}
+
+.danger-btn-small:hover{
+    transition: 0.2s background-color;
+    cursor:pointer;
+    background-color: var(--danger-btn-colour-pressed);
 }
 
 .danger-btn:active, .danger-btn-small:active{
