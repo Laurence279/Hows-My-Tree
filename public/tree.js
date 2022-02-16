@@ -18,8 +18,8 @@
     await initialiseTreeCanvas(treeData);
     if (new Date(treeData.datewatered).toDateString() == new Date(responseData.serverTime).toDateString()) {
         waterBtn.textContent= ("Already watered today!")
-        waterBtn.disabled = true;
         waterBtn.classList.add("main-btn-disabled")
+        waterBtn.disabled = true;
     }
     updateTreeDetails(treeData);
 })();
@@ -89,8 +89,8 @@ deleteBtnConfirm.addEventListener("click", async (e) => {
 waterBtn.addEventListener("click", async (e) => {
     if (new Date(treeData.datewatered).toDateString() == new Date(responseData.serverTime).toDateString()) {
         waterBtn.textContent= ("Already watered today!")
-        waterBtn.disabled = true;
         waterBtn.classList.add("main-btn-disabled")
+        waterBtn.disabled = true;
         return
     }
     e.preventDefault();
@@ -98,6 +98,7 @@ waterBtn.addEventListener("click", async (e) => {
     await makePatchRequest("datewatered", "GET_DATE");
     await makePatchRequest("timeswatered", treeData.timeswatered += 1);
     waterBtn.textContent= ("Already watered today!")
+    waterBtn.classList.add("main-btn-disabled")
     waterBtn.disabled = true;
     createRain();
 })

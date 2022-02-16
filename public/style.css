@@ -78,8 +78,9 @@ body {
     background-color: var(--main-btn-colour-pressed);
 }
 
-.main-btn-disabled:active{
-    background-color: var(--main-btn-colour);
+.main-btn-disabled, .main-btn-disabled:hover, .main-btn-disabled:active{
+    background-color:rgb(103, 156, 103);
+    pointer-events: none;
 }
 
 .secondary-btn {
@@ -317,6 +318,10 @@ header {
 
 #sort-dropdown{
     padding: 0.25em;
+}
+
+#water-btn{
+    margin-bottom: 1em;
 }
 
 
