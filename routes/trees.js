@@ -1,11 +1,12 @@
 // API routing information
 
 
-import express from "express";
+import express, { application } from "express";
 const router = express.Router();
 import bcrypt from "bcrypt"
 const saltRounds = 10;
 import { DateTime, Interval } from "luxon";
+
 
 
 
@@ -63,6 +64,8 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
+
+
     //Function to get tree by ID
     const payload = await getTreeById(req.params.id)
     res.json({
@@ -142,6 +145,8 @@ async function checkPassword(id, password) {
     const passwordCheck = await bcrypt.compareSync(password, hash);
     return passwordCheck;
 }
+
+
 
 
 
