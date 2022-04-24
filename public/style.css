@@ -532,10 +532,14 @@ canvas{
 #about-info{
     text-align: left;
     max-width: 800px;
-    margin: 0 4em;
+    margin: 1em 4em;
 }
 
 #about-info h3{
+    margin: 1em 0;
+}
+
+#gh-link{
     margin: 1em 0;
 }
 
