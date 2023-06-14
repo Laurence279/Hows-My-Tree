@@ -11,8 +11,7 @@
     "createTable": "node -r dotenv/config bin/scripts/createTable.js",
     "populateTable": "node -r dotenv/config bin/scripts/populateTable.js",
     "selectTable": "node -r dotenv/config bin/scripts/selectAllTrees.js",
-    "deleteTable": "node -r dotenv/config bin/scripts/deleteAllTrees.js",
-    "updateTrees": "node -r dotenv/config bin/scripts/updateTrees.js"
+    "deleteTable": "node -r dotenv/config bin/scripts/deleteAllTrees.js"
   },
   "engines" : { 
     "npm" : "8.19.2",
