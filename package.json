@@ -14,6 +14,10 @@
     "deleteTable": "node -r dotenv/config bin/scripts/deleteAllTrees.js",
     "updateTrees": "node -r dotenv/config bin/scripts/updateTrees.js"
   },
+  "engines" : { 
+    "npm" : "8.19.2",
+    "node" : "18.12.1"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

@@ -14,7 +14,7 @@ import {
 } from 'path'
 
 const saltRounds = 10;
-const URL_VALIDATION = ["localhost:5432", "howsmytree.herokuapp.com"]
+const URL_VALIDATION = ["localhost:5432", "https://howsmytree.azurewebsites.net"]
 
 
 const __filename = fileURLToPath(
